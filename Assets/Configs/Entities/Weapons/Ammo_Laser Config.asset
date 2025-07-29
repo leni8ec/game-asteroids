@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 7001093951915556816, guid: f49b108401febc74cb6d14ef1e19568b, type: 3}
   <PoolCapacity>k__BackingField: 5
-  maxShotsCount: 3
-  shotRestoreCountdown: 3
-  fireRate: 1
-  maxDistance: 8
-  duration: 1
-  colliderRadius: 0.05
+  <MaxShotsCount>k__BackingField: 3
+  <ShotRefillDuration>k__BackingField: 3
+  <FireRate>k__BackingField: 1
+  <MaxDistance>k__BackingField: 8
+  <Duration>k__BackingField: 1
+  <ColliderRadius>k__BackingField: 0.05

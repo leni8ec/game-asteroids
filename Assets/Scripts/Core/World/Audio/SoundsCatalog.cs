@@ -4,23 +4,23 @@ using UnityEngine;
 namespace Asteroids.Core.World.Audio {
     [CreateAssetMenu(menuName = "Configs/Sounds Catalog")]
     public class SoundsCatalog : ScriptableObject, ICatalog, IConfig {
-        [Space]
-        public AudioClip playerMove;
-        public AudioClip playerExplosion;
-        [Space]
-        public AudioClip fire1;
-        public AudioClip fire2;
-        [Space]
-        public AudioClip ufoLarge;
-        public AudioClip ufoSmall;
-        [Space]
-        public AudioClip explosionLarge;
-        public AudioClip explosionMedium;
-        public AudioClip explosionSmall;
-        [Space]
-        public AudioClip extraShip;
-        [Space]
-        public AudioClip wavyBit1;
-        public AudioClip wavyBit2;
+        [field: Space]
+        [field: SerializeField] public AudioClip PlayerMove { get; private set; }
+        [field: SerializeField] public AudioClip PlayerExplosion { get; private set; }
+        [field: Space]
+        [field: SerializeField] public AudioClip Fire1 { get; private set; }
+        [field: SerializeField] public AudioClip Fire2 { get; private set; }
+        [field: Space]
+        [field: SerializeField] public AudioClip UfoLarge { get; private set; }
+        [field: SerializeField] public AudioClip UfoSmall { get; private set; }
+        [field: Space]
+        [field: SerializeField] public AudioClip ExplosionLarge { get; private set; }
+        [field: SerializeField] public AudioClip ExplosionMedium { get; private set; }
+        [field: SerializeField] public AudioClip ExplosionSmall { get; private set; }
+        [field: Space]
+        [field: SerializeField] public AudioClip ExtraShip { get; private set; }
+        [field: Space]
+        [field: SerializeField] public AudioClip WavyBit1 { get; private set; }
+        [field: SerializeField] public AudioClip WavyBit2 { get; private set; }
     }
 }

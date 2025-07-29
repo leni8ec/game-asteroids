@@ -6,11 +6,11 @@ namespace Asteroids.Core.Actors.Enemies.Asteroid {
         public delegate void ExplosionEvent(Asteroid asteroid);
         public event ExplosionEvent Explosion;
 
-        public float DestroyedFragments => Config.destroyFragments;
-        public AsteroidSize Size => Config.size;
+        public float DestroyedFragments => Config.DestroyFragments;
+        public AsteroidSize Size => Config.Size;
 
         public override void Upd(float deltaTime) {
-            Transform.Translate(State.Direction * (Config.speed * deltaTime));
+            Transform.Translate(State.Direction * (Config.Speed * deltaTime));
         }
 
         protected override void OnKill() {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 213431155882708080, guid: e5e7749d08dded347a154f537855826b, type: 3}
   <PoolCapacity>k__BackingField: 30
-  size: 1
-  speed: 2
-  destroyFragments: 4
-  colliderRadius: 0.5
+  <Size>k__BackingField: 1
+  <Speed>k__BackingField: 2
+  <DestroyFragments>k__BackingField: 4
+  <ColliderRadius>k__BackingField: 0.5

@@ -4,10 +4,10 @@ using Asteroids.Core.Actors.Weapons.Ammo.LaserRay;
 namespace Asteroids.Core.Actors.Weapons.Arms.Laser {
     public class Laser : Ammo<LaserRayState, LaserConfig>, ILaser {
 
-        public float MaxDistance => Config.maxDistance;
+        public float MaxDistance => Config.MaxDistance;
 
         public void Emit() {
-            State.duration = Config.duration;
+            State.duration = Config.Duration;
             Transform.up = State.Direction;
         }
 

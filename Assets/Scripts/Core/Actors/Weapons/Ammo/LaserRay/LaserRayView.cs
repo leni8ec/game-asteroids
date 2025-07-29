@@ -14,13 +14,13 @@ namespace Asteroids.Core.Actors.Weapons.Ammo.LaserRay {
         private void FireHandle() {
             // Set laser scale (visual)
             Vector3 scale = scaledTransform.localScale;
-            scale.y = Config.maxDistance;
+            scale.y = Config.MaxDistance;
             scaledTransform.localScale = scale;
         }
 
         private void Update() {
             Color color = laserSprite.color;
-            color.a = Mathf.Max(0, State.duration / Config.duration);
+            color.a = Mathf.Max(0, State.duration / Config.Duration);
             laserSprite.color = color;
         }
 

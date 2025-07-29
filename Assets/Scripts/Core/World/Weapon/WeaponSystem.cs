@@ -26,8 +26,8 @@ namespace Asteroids.Core.World.Weapon {
         private IReadOnlyDynamicList<IEntity> ActiveAmmo1 { get; }
         private IReadOnlyDynamicList<IEntity> ActiveAmmo2 { get; }
 
-        private float Fire1Delay => 1 / Ammo1Config.fireRate;
-        private float Fire2Delay => 1 / Ammo2Config.fireRate;
+        private float Fire1Delay => 1 / Ammo1Config.FireRate;
+        private float Fire2Delay => 1 / Ammo2Config.FireRate;
 
         private readonly FireEvent fire1EventPublisher;
         private readonly FireEvent fire2EventPublisher;
@@ -59,7 +59,7 @@ namespace Asteroids.Core.World.Weapon {
         }
 
         protected override void OnEnableSystem() {
-            State.laserRefillCountdown = Ammo2Config.shotRefillDuration;
+            State.laserRefillCountdown = Ammo2Config.ShotRefillDuration;
             player = Entities.Player;
         }
 
@@ -85,9 +85,9 @@ namespace Asteroids.Core.World.Weapon {
             if (State.fire2Countdown > 0) State.fire2Countdown -= deltaTime;
 
             // Laser
-            if (State.laserShotsCount < Ammo2Config.maxShotsCount) {
+            if (State.laserShotsCount < Ammo2Config.MaxShotsCount) {
                 if ((State.laserRefillCountdown -= deltaTime) <= 0) {
-                    State.laserRefillCountdown = Ammo2Config.shotRefillDuration;
+                    State.laserRefillCountdown = Ammo2Config.ShotRefillDuration;
                     State.laserShotsCount++;
                 }
             }

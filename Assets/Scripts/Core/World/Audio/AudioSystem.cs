@@ -33,23 +33,23 @@ namespace Asteroids.Core.World.Audio {
 
         public void Start() {
             // Weapon events
-            WeaponState.Fire1Event += () => PlaySound(Catalog.fire1);
-            WeaponState.Fire2Event += () => PlaySound(Catalog.fire2);
+            WeaponState.Fire1Event += () => PlaySound(Catalog.Fire1);
+            WeaponState.Fire2Event += () => PlaySound(Catalog.Fire2);
 
             // Enemy events
             Entities.KillEvent += entity => {
                 switch (entity) {
                     case Player:
-                        PlaySound(Catalog.playerExplosion, true); break;
+                        PlaySound(Catalog.PlayerExplosion, true); break;
                     case Asteroid asteroid:
                         switch (asteroid.Size) {
-                            case AsteroidSize.Large: PlaySound(Catalog.explosionLarge); break;
-                            case AsteroidSize.Medium: PlaySound(Catalog.explosionMedium); break;
-                            case AsteroidSize.Small: PlaySound(Catalog.explosionSmall); break;
+                            case AsteroidSize.Large: PlaySound(Catalog.ExplosionLarge); break;
+                            case AsteroidSize.Medium: PlaySound(Catalog.ExplosionMedium); break;
+                            case AsteroidSize.Small: PlaySound(Catalog.ExplosionSmall); break;
                         }
                         break;
                     case Ufo:
-                        PlaySound(Catalog.explosionMedium); break;
+                        PlaySound(Catalog.ExplosionMedium); break;
                 }
             };
         }

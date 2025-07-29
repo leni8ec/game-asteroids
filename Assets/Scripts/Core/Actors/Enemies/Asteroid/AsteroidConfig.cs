@@ -1,25 +1,29 @@
 ﻿using Asteroids.Framework.Entity;
 using Asteroids.Framework.Entity.Containers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Asteroids.Core.Actors.Enemies.Asteroid {
 
     [CreateAssetMenu(menuName = "Configs/Asteroid Config")]
-    public class AsteroidConfig : EntityConfig<AsteroidSize>, IColliderRadiusContainer {
-        [Space]
-        public AsteroidSize size;
-        [Space]
-        public float speed = 1f;
-        [Tooltip("How many new smaller fragments on destroyed")]
-        public int destroyFragments = 4;
+    public class AsteroidConfig : KeyedEntityConfig<AsteroidSize>, IColliderRadiusContainer {
+        [field: Space]
+        [field: FormerlySerializedAs("size")]
+        [field: SerializeField] public AsteroidSize Size { get; private set; }
+        [field: Space]
+        [field: FormerlySerializedAs("speed")]
+        [field: SerializeField] public float Speed { get; private set; } = 1f;
+        [field: Tooltip("How many new smaller fragments on destroyed")]
+        [field: FormerlySerializedAs("destroyFragments")]
+        [field: SerializeField] public int DestroyFragments { get; private set; } = 4;
 
-        [Header("Collision")]
-        public float colliderRadius = 0.1f;
+        [field: Header("Collision")]
+        [field: FormerlySerializedAs("colliderRadius")]
+        [field: SerializeField] public float ColliderRadius { get; private set; } = 0.1f;
 
-        public float ColliderRadius => colliderRadius;
 
         public override AsteroidSize GetConfigKey() {
-            return size;
+            return Size;
         }
     }
 

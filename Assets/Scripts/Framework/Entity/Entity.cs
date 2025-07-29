@@ -8,7 +8,8 @@ namespace Asteroids.Framework.Entity {
         where TState : EntityState
         where TConfig : EntityConfig {
 
-        public TConfig Config { get; private set; }
+        /// <remarks> Entity config is protected from public use </remarks>
+        protected TConfig Config { get; private set; }
         public TState State { get; private set; }
 
         // Sugar

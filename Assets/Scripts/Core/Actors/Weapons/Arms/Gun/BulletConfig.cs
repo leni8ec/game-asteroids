@@ -1,22 +1,26 @@
 ﻿using Asteroids.Framework.Entity;
 using Asteroids.Framework.Entity.Containers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Asteroids.Core.Actors.Weapons.Arms.Gun {
     // todo: split config to Arms and Ammo
     [CreateAssetMenu(menuName = "Configs/Bullet Config")]
     public class BulletConfig : EntityConfig, IColliderRadiusContainer {
-        [Space]
-        [Tooltip("shots per sec")]
-        public float fireRate = 5;
-        [Space]
-        public float speed = 5;
-        [Tooltip("in sec")]
-        public float lifetime = 2;
+        [field: Space]
+        [field: Tooltip("shots per sec")]
+        [field: FormerlySerializedAs("fireRate")]
+        [field: SerializeField] public float FireRate { get; private set; } = 5;
+        [field: Space]
+        [field: FormerlySerializedAs("speed")]
+        [field: SerializeField] public float Speed { get; private set; } = 5;
+        [field: Tooltip("in sec")]
+        [field: FormerlySerializedAs("lifetime")]
+        [field: SerializeField] public float Lifetime { get; private set; } = 2;
 
-        [Header("Collision")]
-        public float colliderRadius = 0.1f;
-        public float ColliderRadius => colliderRadius;
+        [field: Header("Collision")]
+        [field: FormerlySerializedAs("colliderRadius")]
+        [field: SerializeField] public float ColliderRadius { get; private set; } = 0.1f;
 
     }
 

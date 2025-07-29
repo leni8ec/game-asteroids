@@ -11,13 +11,13 @@ namespace Asteroids.Core.Actors.Player {
             // Moving
             if (State.Move) {
                 if (State.inertialTime < 1) {
-                    State.inertialTime = Mathf.Min(1, State.inertialTime + deltaTime * (1 / Config.accelerationInertia));
-                    State.inertialSpeed = Mathf.Lerp(0, Config.speed, State.inertialTime);
+                    State.inertialTime = Mathf.Min(1, State.inertialTime + deltaTime * (1 / Config.AccelerationInertia));
+                    State.inertialSpeed = Mathf.Lerp(0, Config.Speed, State.inertialTime);
                 }
             } else {
                 if (State.inertialTime > 0) {
-                    State.inertialTime = Mathf.Max(0, State.inertialTime - deltaTime * (1 / Config.brakingInertia));
-                    State.inertialSpeed = Mathf.Lerp(0, Config.speed, State.inertialTime);
+                    State.inertialTime = Mathf.Max(0, State.inertialTime - deltaTime * (1 / Config.BrakingInertia));
+                    State.inertialSpeed = Mathf.Lerp(0, Config.Speed, State.inertialTime);
                 }
             }
 
@@ -25,7 +25,7 @@ namespace Asteroids.Core.Actors.Player {
                 // transform.Translate(transform.up * (config.speed * deltaTime));
                 Vector3 direction;
                 if (State.Move) {
-                    direction = Vector3.Lerp(State.lastDirection, Transform.up, deltaTime / Config.leftOverInertia); // leftover inertia
+                    direction = Vector3.Lerp(State.lastDirection, Transform.up, deltaTime / Config.LeftOverInertia); // leftover inertia
                 } else {
                     direction = State.lastDirection; // don't change direction without acceleration
                 }
@@ -39,7 +39,7 @@ namespace Asteroids.Core.Actors.Player {
 
             // Rotation
             if (State.Rotate.Value != 0) {
-                Transform.Rotate(0, 0, Config.rotationSpeed * deltaTime * State.Rotate.Value);
+                Transform.Rotate(0, 0, Config.RotationSpeed * deltaTime * State.Rotate.Value);
             }
 
             // Calculate speed

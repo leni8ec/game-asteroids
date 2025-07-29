@@ -30,7 +30,7 @@ namespace Asteroids.Core.World.Screen {
         }
 
         private void ProcessInfinityScreen() {
-            Rect worldBorders = Camera.GetWorldLimits(Config.screenInfinityOutsideOffset);
+            Rect worldBorders = Camera.GetWorldLimits(Config.ScreenInfinityOutsideOffset);
 
             // Player
             Active.Get<Player>().ForEachDynamic(ProcessEntity);

@@ -1,28 +1,34 @@
 ﻿using Asteroids.Framework.Entity;
 using Asteroids.Framework.Entity.Containers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Asteroids.Core.Actors.Weapons.Arms.Laser {
     // todo: split config to Arms and Ammo
     [CreateAssetMenu(menuName = "Configs/Laser Config")]
     public class LaserConfig : EntityConfig, IColliderRadiusContainer {
-        [Space]
-        [Tooltip("Max shots count")]
-        public int maxShotsCount = 3;
-        [Tooltip("Delay to restore shot")]
-        public float shotRefillDuration = 3;
-        [Space]
-        [Tooltip("shots per sec")]
-        public float fireRate = 1f;
-        [Space]
-        public float maxDistance = 8;
-        [Space]
-        [Tooltip("lifetime")]
-        public float duration = 1f;
+        [field: Space]
+        [field: Tooltip("Max shots count")]
+        [field: FormerlySerializedAs("maxShotsCount")]
+        [field: SerializeField] public int MaxShotsCount { get; private set; } = 3;
+        [field: Tooltip("Delay to restore shot")]
+        [field: FormerlySerializedAs("shotRefillDuration")]
+        [field: SerializeField] public float ShotRefillDuration { get; private set; } = 3;
+        [field: Space]
+        [field: Tooltip("shots per sec")]
+        [field: FormerlySerializedAs("fireRate")]
+        [field: SerializeField] public float FireRate { get; private set; } = 1f;
+        [field: Space]
+        [field: FormerlySerializedAs("maxDistance")]
+        [field: SerializeField] public float MaxDistance { get; private set; } = 8;
+        [field: Space]
+        [field: Tooltip("lifetime")]
+        [field: FormerlySerializedAs("duration")]
+        [field: SerializeField] public float Duration { get; private set; } = 1f;
 
-        [Header("Collision")]
-        public float colliderRadius = 0.05f;
-        public float ColliderRadius => colliderRadius;
+        [field: Header("Collision")]
+        [field: FormerlySerializedAs("colliderRadius")]
+        [field: SerializeField] public float ColliderRadius { get; private set; } = 0.05f;
 
     }
 }

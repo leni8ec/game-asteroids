@@ -58,8 +58,8 @@ namespace Asteroids.Core.World.Enemies {
 
 
         protected override void OnEnableSystem() {
-            State.asteroidSpawnCountdown = 1 / LevelConfig.asteroidsSpawnRate;
-            State.ufoSpawnCountdown = 1 / LevelConfig.ufoSpawnRate;
+            State.asteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
+            State.ufoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
             player = Entities.Player;
 
         }
@@ -75,16 +75,16 @@ namespace Asteroids.Core.World.Enemies {
             if ((State.asteroidSpawnCountdown -= deltaTime) <= 0) {
                 // Check asteroids count limit
                 int totalActiveAsteroids = ActiveAsteroids.Count;
-                if (totalActiveAsteroids < LevelConfig.asteroidsLimit) {
-                    State.asteroidSpawnCountdown = 1 / LevelConfig.asteroidsSpawnRate;
+                if (totalActiveAsteroids < LevelConfig.AsteroidsLimit) {
+                    State.asteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
                     SpawnAsteroid();
                 }
             }
 
             if ((State.ufoSpawnCountdown -= deltaTime) <= 0) {
                 int totalActiveUfo = ActiveUfos.Count;
-                if (totalActiveUfo < LevelConfig.ufosLimit) {
-                    State.ufoSpawnCountdown = 1 / LevelConfig.ufoSpawnRate;
+                if (totalActiveUfo < LevelConfig.UfosLimit) {
+                    State.ufoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
                     SpawnUfo();
                 }
             }
@@ -105,7 +105,7 @@ namespace Asteroids.Core.World.Enemies {
 
 
         private Vector3 GetRandomSpawnPosition() {
-            Rect worldBorders = Camera.GetWorldLimits(ScreenConfig.screenSpawnOutsideOffset);
+            Rect worldBorders = Camera.GetWorldLimits(ScreenConfig.ScreenSpawnOutsideOffset);
 
             Vector2 vector = new(Random.value, Random.value);
             Vector2 pos = new(worldBorders.x + worldBorders.width * vector.x, worldBorders.y + worldBorders.height * vector.y);

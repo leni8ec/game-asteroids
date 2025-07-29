@@ -45,9 +45,9 @@ namespace Asteroids.Core.World.Common.Context {
             index.Add(bullet);
             index.Add(laser);
 
-            index.Add(asteroidLarge, AsteroidSize.Large);
-            index.Add(asteroidMedium, AsteroidSize.Medium);
-            index.Add(asteroidSmall, AsteroidSize.Small);
+            index.Add(asteroidLarge, asteroidLarge.GetConfigKey());
+            index.Add(asteroidMedium, asteroidMedium.GetConfigKey());
+            index.Add(asteroidSmall, asteroidSmall.GetConfigKey());
             index.Add(ufo);
 
             index.Add(level);

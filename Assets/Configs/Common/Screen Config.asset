@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb29876c63324e24b556f565a2ea29f8, type: 3}
   m_Name: Screen Config
   m_EditorClassIdentifier: 
+  <ViewportOutsideBorders>k__BackingField: {x: -0.02, y: 1.02}
+  <ScreenInfinityOutsideOffset>k__BackingField: 0.3
+  <ScreenSpawnOutsideOffset>k__BackingField: 0.25

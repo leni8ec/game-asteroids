@@ -1,20 +1,24 @@
 ﻿using Asteroids.Framework.Entity;
 using Asteroids.Framework.Entity.Containers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Asteroids.Core.Actors.Enemies.Ufo {
     [CreateAssetMenu(menuName = "Configs/Ufo Config")]
     public class UfoConfig : EntityConfig, IColliderRadiusContainer {
-        [Space]
-        public float startSpeed = 1;
-        public float huntSpeed = 1.2f;
+        [field: Space]
+        [field: FormerlySerializedAs("startSpeed")]
+        [field: SerializeField] public float StartSpeed { get; private set; } = 1;
+        [field: FormerlySerializedAs("huntSpeed")]
+        [field: SerializeField] public float HuntSpeed { get; private set; } = 1.2f;
 
-        [Tooltip("in seconds")]
-        public float huntDelay = 3;
+        [field: Tooltip("in seconds")]
+        [field: FormerlySerializedAs("huntDelay")]
+        [field: SerializeField] public float HuntDelay { get; private set; } = 3;
 
-        [Header("Collision")]
-        public float colliderRadius = 0.1f;
-        public float ColliderRadius => colliderRadius;
+        [field: Header("Collision")]
+        [field: FormerlySerializedAs("colliderRadius")]
+        [field: SerializeField] public float ColliderRadius { get; private set; } = 0.1f;
 
     }
 }

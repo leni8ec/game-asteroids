@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84aefd44ebf0492db357f94182e4bb27, type: 3}
+  m_Name: World Configs Catalog
+  m_EditorClassIdentifier: 
+  level: {fileID: 11400000, guid: 425174e9e332aac4484337ad063622fd, type: 2}
+  screen: {fileID: 11400000, guid: d88d7f2757dc5c4439fd7a1455d1b24c, type: 2}
+  player: {fileID: 11400000, guid: 786029de6fbdcbb4ea54597b7696d18c, type: 2}
+  bullet: {fileID: 11400000, guid: 92c7feb4cf743024cb340cd1fb88c8db, type: 2}
+  laser: {fileID: 11400000, guid: e5b59203c8ec50a4d83ba06dbccc2723, type: 2}
+  asteroidLarge: {fileID: 11400000, guid: 3964be2ec677a554894815016a65f43b, type: 2}
+  asteroidMedium: {fileID: 11400000, guid: 9d9e717457f7ac24fbdc6a1b5f9af56c, type: 2}
+  asteroidSmall: {fileID: 11400000, guid: 7e7f9688c8450af49a7d06fc9e34a2f1, type: 2}
+  ufo: {fileID: 11400000, guid: bf7c9cd7958928a44af33b695ca69406, type: 2}
+  pools: {fileID: 11400000, guid: 93c89d39c38157e49a17b2e209572474, type: 2}
+  sounds: {fileID: 11400000, guid: b910ddc8aaace124c9d4ec35f6bf78e4, type: 2}
+  prefabs: {fileID: 11400000, guid: 33ad1ed24e3726f4ba96c0361086816a, type: 2}

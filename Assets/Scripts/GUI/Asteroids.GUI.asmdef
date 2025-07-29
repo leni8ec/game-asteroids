@@ -1,0 +1,20 @@
+{
+    "name": "Asteroids.GUI",
+    "rootNamespace": "Asteroids",
+    "references": [
+        "GUID:1dda17465b058ec4489556f732f2e049",
+        "GUID:5acf2add7010a2448919d94f0e2f1c15",
+        "GUID:231e5a06af220a94fb6ef4a169c2284b",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

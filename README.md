@@ -1,13 +1,20 @@
 ## Asteroids - video game
-> _Portfolio project_
+```Portfolio project```
 
 ![image](https://github.com/leni8ec/game-asteroids/assets/2379473/86ce4f7b-5b7e-4f0f-bf61-778990c0321d)
 
+> The goal of this project is to show the possible structure of the project in 
+> Unity as simply as possible, without any external dependencies.
+> 
+> Simple custom implementations of the:
+> - dependency container
+> - abstractions for factories, spawners and pools
+> - elementary Reactive Properties
 
 ---
 
-### ✅ Architecture used (design patterns)
-- **MVP** (SC) - base architecture pattern (supervising controller)
+### ✅ Architecture (design patterns)
+- **MV\* (SC)** - base architecture pattern (SC - supervising controller)
 - **Data** (`state`, `config`) is split from **Logic** (`systems`)
 - **Reactive properties** - simple realization
 - **IoC, DI** - dependency injection 

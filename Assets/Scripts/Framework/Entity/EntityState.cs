@@ -11,7 +11,8 @@ namespace Asteroids.Framework.Entity {
         /// </summary>
         public ReactiveFlag Active { get; private set; } = new();
 
-        public Transform Transform { get; set; } // todo-consider: If this is necessary here?
+        // todo-consider: If this is necessary here?
+        public Transform Transform { get; internal set; }
 
         public void Reset() {
             Transform.position = default;

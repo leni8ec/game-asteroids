@@ -8,15 +8,15 @@ namespace Asteroids.Core.World.Weapon {
         /// <summary>
         /// Active weapons (from input)
         /// </summary>
-        public Weapon activeWeapons;
+        public Weapon ActiveWeapons { get; internal set; }
 
         // Countdowns
-        public float fire1Countdown;
-        public float fire2Countdown;
+        public float Fire1Countdown { get; internal set; }
+        public float Fire2Countdown { get; internal set; }
 
         // Laser data
-        public float laserRefillCountdown;
-        public float laserShotsCount;
+        public float LaserRefillCountdown { get; internal set; }
+        public float LaserShotsCount { get; internal set; }
 
 
         // Events
@@ -25,11 +25,11 @@ namespace Asteroids.Core.World.Weapon {
 
 
         public void Reset() {
-            activeWeapons = default;
-            fire1Countdown = default;
-            fire2Countdown = default;
-            laserRefillCountdown = default;
-            laserShotsCount = default;
+            ActiveWeapons = default;
+            Fire1Countdown = default;
+            Fire2Countdown = default;
+            LaserRefillCountdown = default;
+            LaserShotsCount = default;
 
             // Fire1Event = default;
             // Fire2Event = default;

@@ -13,7 +13,7 @@ namespace Asteroids.Core.World.Entities.State {
         // todo-consider: need to investigate it (maybe find a more reliable solution)
         // - use 'Lazy<>' in Systems ?
         ///  Active Player
-        public Player Player { get; set; }
+        public Player Player { get; internal set; }
 
 
         public void Reset() {

@@ -76,10 +76,10 @@ namespace Asteroids.GUI.Screens {
             coords.SetText($"Coords: [ {playerPosition.x:F1} : {playerPosition.y:F1} ]");
             angle.SetText($"Angle: {playerRotation.z:F0}");
             speed.SetText($"Speed: {playerSpeed:N}");
-            laserCount.SetText($"Laser Count: {weapon.laserShotsCount}");
-            laserRefillCountdown.SetText($"Laser Countdown: {weapon.laserRefillCountdown:0.00}");
-            weapon1Countdown.SetText($"Weapon 1 countdown: {weapon.fire1Countdown:0.00}");
-            weapon2Countdown.SetText($"Weapon 2 countdown: {weapon.fire2Countdown:0.00}");
+            laserCount.SetText($"Laser Count: {weapon.LaserShotsCount}");
+            laserRefillCountdown.SetText($"Laser Countdown: {weapon.LaserRefillCountdown:0.00}");
+            weapon1Countdown.SetText($"Weapon 1 countdown: {weapon.Fire1Countdown:0.00}");
+            weapon2Countdown.SetText($"Weapon 2 countdown: {weapon.Fire2Countdown:0.00}");
         }
 
         // It's identical to a 'TestMethodFormattingText' (by comparing performance in unity profiler)
@@ -87,10 +87,10 @@ namespace Asteroids.GUI.Screens {
             coords.SetText("Coords: [ {0:0.0} : {1:0.0} ]", playerPosition.x, playerPosition.y);
             angle.SetText("Angle: {0:0}", playerRotation.z);
             speed.SetText("Speed: {0:0.00}", playerSpeed);
-            laserCount.SetText("Laser Count: {0}", weapon.laserShotsCount);
-            laserRefillCountdown.SetText("Laser Countdown: {0:0.00}", weapon.laserRefillCountdown);
-            weapon1Countdown.SetText("Weapon 1 countdown: {0:0.00}", weapon.fire1Countdown);
-            weapon2Countdown.SetText("Weapon 2 countdown: {0:0.00}", weapon.fire2Countdown);
+            laserCount.SetText("Laser Count: {0}", weapon.LaserShotsCount);
+            laserRefillCountdown.SetText("Laser Countdown: {0:0.00}", weapon.LaserRefillCountdown);
+            weapon1Countdown.SetText("Weapon 1 countdown: {0:0.00}", weapon.Fire1Countdown);
+            weapon2Countdown.SetText("Weapon 2 countdown: {0:0.00}", weapon.Fire2Countdown);
         }
 
         // Fastest variant (does not update the text if it has not changed)
@@ -98,10 +98,10 @@ namespace Asteroids.GUI.Screens {
             coords.text = $"Coords: [ {playerPosition.x:F1} : {playerPosition.y:F1} ]";
             angle.text = $"Angle: {playerRotation.z:F0}";
             speed.text = $"Speed: {playerSpeed:N}";
-            laserCount.text = $"Laser Count: {weapon.laserShotsCount}";
-            laserRefillCountdown.text = $"Laser Countdown: {weapon.laserRefillCountdown:0.00}";
-            weapon1Countdown.text = $"Weapon 1 countdown: {weapon.fire1Countdown:0.00}";
-            weapon2Countdown.text = $"Weapon 2 countdown: {weapon.fire2Countdown:0.00}";
+            laserCount.text = $"Laser Count: {weapon.LaserShotsCount}";
+            laserRefillCountdown.text = $"Laser Countdown: {weapon.LaserRefillCountdown:0.00}";
+            weapon1Countdown.text = $"Weapon 1 countdown: {weapon.Fire1Countdown:0.00}";
+            weapon2Countdown.text = $"Weapon 2 countdown: {weapon.Fire2Countdown:0.00}";
         }
 
         // TMP fast variant (Property)

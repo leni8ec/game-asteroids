@@ -12,9 +12,9 @@ namespace Asteroids.GUI.Input.Commands {
                 : Weapon.Laser;
 
             if (activeFlag) {
-                State.activeWeapons |= weapon;
+                State.ActiveWeapons |= weapon;
             } else {
-                State.activeWeapons &= ~weapon;
+                State.ActiveWeapons &= ~weapon;
             }
         }
 

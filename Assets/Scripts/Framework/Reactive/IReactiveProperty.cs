@@ -6,7 +6,7 @@ namespace Asteroids.Framework.Reactive {
     /// ReadOnly 'ReactiveProperty' interface
     /// </summary>
     /// <typeparam name="T">Type of the property</typeparam>
-    public interface IReactiveProperty<out T> : IReset {
+    public interface IReactiveProperty<out T> {
 
         /// The 'Value' has been changed
         event Action<T> Changed;

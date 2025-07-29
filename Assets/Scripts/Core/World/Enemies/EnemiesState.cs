@@ -3,13 +3,13 @@
 namespace Asteroids.Core.World.Enemies {
     public class EnemiesState : IState {
 
-        public float asteroidSpawnCountdown;
-        public float ufoSpawnCountdown;
+        public float AsteroidSpawnCountdown { get; internal set; }
+        public float UfoSpawnCountdown { get; internal set; }
 
 
         public void Reset() {
-            asteroidSpawnCountdown = default;
-            ufoSpawnCountdown = default;
+            AsteroidSpawnCountdown = default;
+            UfoSpawnCountdown = default;
         }
 
     }

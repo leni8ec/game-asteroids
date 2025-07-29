@@ -59,7 +59,7 @@ namespace Asteroids.Core.World.Weapon {
         }
 
         protected override void OnEnableSystem() {
-            State.laserRefillCountdown = Ammo2Config.ShotRefillDuration;
+            State.LaserRefillCountdown = Ammo2Config.ShotRefillDuration;
             player = Entities.Player;
         }
 
@@ -69,26 +69,26 @@ namespace Asteroids.Core.World.Weapon {
         }
 
         public void UpdateSystem(float deltaTime) {
-            bool fired = State.activeWeapons != Weapon.Empty;
-            if (fired && State.activeWeapons.HasFlag(Weapon.Gun) && State.fire1Countdown <= 0) {
-                State.fire1Countdown = Fire1Delay;
+            bool fired = State.ActiveWeapons != Weapon.Empty;
+            if (fired && State.ActiveWeapons.HasFlag(Weapon.Gun) && State.Fire1Countdown <= 0) {
+                State.Fire1Countdown = Fire1Delay;
                 Fire1();
             }
 
-            if (fired && State.activeWeapons.HasFlag(Weapon.Laser) && State.fire2Countdown <= 0 && State.laserShotsCount > 0) {
-                State.fire2Countdown = Fire2Delay;
-                State.laserShotsCount--;
+            if (fired && State.ActiveWeapons.HasFlag(Weapon.Laser) && State.Fire2Countdown <= 0 && State.LaserShotsCount > 0) {
+                State.Fire2Countdown = Fire2Delay;
+                State.LaserShotsCount--;
                 Fire2();
             }
 
-            if (State.fire1Countdown > 0) State.fire1Countdown -= deltaTime;
-            if (State.fire2Countdown > 0) State.fire2Countdown -= deltaTime;
+            if (State.Fire1Countdown > 0) State.Fire1Countdown -= deltaTime;
+            if (State.Fire2Countdown > 0) State.Fire2Countdown -= deltaTime;
 
             // Laser
-            if (State.laserShotsCount < Ammo2Config.MaxShotsCount) {
-                if ((State.laserRefillCountdown -= deltaTime) <= 0) {
-                    State.laserRefillCountdown = Ammo2Config.ShotRefillDuration;
-                    State.laserShotsCount++;
+            if (State.LaserShotsCount < Ammo2Config.MaxShotsCount) {
+                if ((State.LaserRefillCountdown -= deltaTime) <= 0) {
+                    State.LaserRefillCountdown = Ammo2Config.ShotRefillDuration;
+                    State.LaserShotsCount++;
                 }
             }
 

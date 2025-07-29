@@ -58,8 +58,8 @@ namespace Asteroids.Core.World.Enemies {
 
 
         protected override void OnEnableSystem() {
-            State.asteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
-            State.ufoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
+            State.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
+            State.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
             player = Entities.Player;
 
         }
@@ -72,19 +72,19 @@ namespace Asteroids.Core.World.Enemies {
 
         public void UpdateSystem(float deltaTime) {
             // Spawn
-            if ((State.asteroidSpawnCountdown -= deltaTime) <= 0) {
+            if ((State.AsteroidSpawnCountdown -= deltaTime) <= 0) {
                 // Check asteroids count limit
                 int totalActiveAsteroids = ActiveAsteroids.Count;
                 if (totalActiveAsteroids < LevelConfig.AsteroidsLimit) {
-                    State.asteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
+                    State.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
                     SpawnAsteroid();
                 }
             }
 
-            if ((State.ufoSpawnCountdown -= deltaTime) <= 0) {
+            if ((State.UfoSpawnCountdown -= deltaTime) <= 0) {
                 int totalActiveUfo = ActiveUfos.Count;
                 if (totalActiveUfo < LevelConfig.UfosLimit) {
-                    State.ufoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
+                    State.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
                     SpawnUfo();
                 }
             }

@@ -951,8 +951,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAction:
     m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 6b6a9df6-2959-4acd-b786-3d85d2513803
     m_Processors: 
     m_Interactions: 
@@ -976,8 +976,8 @@ MonoBehaviour:
     m_Flags: 0
   rotateAction:
     m_Name: Rotate
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: b655596f-ca5e-435b-943b-716356331a48
     m_Processors: 
     m_Interactions: 
@@ -1033,8 +1033,8 @@ MonoBehaviour:
     m_Flags: 0
   fire1Action:
     m_Name: Fire 1
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 554d1f3e-478e-45d7-be73-319f1974c1b9
     m_Processors: 
     m_Interactions: 
@@ -1058,8 +1058,8 @@ MonoBehaviour:
     m_Flags: 0
   fire2Action:
     m_Name: Fire 2
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 033560d3-98b4-4aa2-b2db-50e9307b52be
     m_Processors: 
     m_Interactions: 
@@ -1083,8 +1083,8 @@ MonoBehaviour:
     m_Flags: 0
   continueAction:
     m_Name: Continue
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 3f5b604d-f4c8-4170-8d3d-3440eb387d37
     m_Processors: 
     m_Interactions: 

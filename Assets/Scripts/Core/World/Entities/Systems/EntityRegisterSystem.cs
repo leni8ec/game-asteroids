@@ -15,9 +15,9 @@ namespace Asteroids.Core.World.Entities.Systems {
     // As an option - in spawners themselves, add active objects to the state?
     // But I would like to keep them in order (although this can be done by sorting when adding)
     [UsedImplicitly]
-    public class EntityActiveRegisterSystem : SystemBase, IEntityActiveRegisterSystem {
+    public class EntityRegisterSystem : SystemBase, IEntityRegisterSystem {
 
-        public EntityActiveRegisterSystem(EntitiesState entities,
+        public EntityRegisterSystem(EntitiesState entities,
             PlayerSpawner playerSpawner,
             UfoSpawner ufoSpawner, AsteroidSpawner asteroidSpawner,
             BulletSpawner bulletSpawner, LaserSpawner laserSpawner

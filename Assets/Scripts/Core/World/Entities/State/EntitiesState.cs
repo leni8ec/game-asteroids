@@ -10,15 +10,8 @@ namespace Asteroids.Core.World.Entities.State {
 
         public ActiveEntities Active { get; } = new();
 
-        // todo-consider: need to investigate it (maybe find a more reliable solution)
-        // - use 'Lazy<>' in Systems ?
-        ///  Active Player
-        public Player Player { get; internal set; }
-
-
         public void Reset() {
             KillEvent = null;
-            Player = null;
         }
 
         public void RegisterEntityKillPublisher(out EntityKillEvent publisher) {

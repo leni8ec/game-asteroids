@@ -7,6 +7,7 @@ using Asteroids.Core.World.Camera;
 using Asteroids.Core.World.Common.Config;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Game;
+using Asteroids.Core.World.Players.Common;
 using Asteroids.Framework.Entity;
 using Asteroids.Framework.Entity.Services.Spawner.Extra;
 using Asteroids.Framework.Systems;
@@ -21,8 +22,9 @@ namespace Asteroids.Core.World.Enemies {
     public class EnemiesSystem : SystemBase, IEnemiesSystem, IUpdateSystem {
         private LevelConfig LevelConfig { get; }
         public ScreenConfig ScreenConfig { get; }
-        private EnemiesState State { get; }
+        private EnemiesState Enemies { get; }
         private EntitiesState Entities { get; }
+        private PlayersState Players { get; }
 
         private ICameraAdapter Camera { get; }
 
@@ -32,16 +34,16 @@ namespace Asteroids.Core.World.Enemies {
         private IReadOnlyDynamicList<IEntity> ActiveUfos { get; }
         private IReadOnlyDynamicList<IEntity> ActiveAsteroids { get; }
 
-        private Player player;
-
-        public EnemiesSystem(LevelConfig levelConfig, ScreenConfig screenConfig, EnemiesState state,
-            EntitiesState entities, GameState gameState, ICameraAdapter cameraAdapter,
-            UfoSpawner ufoSpawner, AsteroidSpawner asteroidSpawner) {
+        public EnemiesSystem(LevelConfig levelConfig, ScreenConfig screenConfig, EnemiesState enemiesState,
+            EntitiesState entities, PlayersState players, GameState gameState,
+            UfoSpawner ufoSpawner, AsteroidSpawner asteroidSpawner,
+            ICameraAdapter cameraAdapter) {
 
             LevelConfig = levelConfig;
             ScreenConfig = screenConfig;
-            State = state;
+            Enemies = enemiesState;
             Entities = entities;
+            Players = players;
 
             // Link properties
             Camera = cameraAdapter;
@@ -58,33 +60,30 @@ namespace Asteroids.Core.World.Enemies {
 
 
         protected override void OnEnableSystem() {
-            State.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
-            State.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
-            player = Entities.Player;
-
+            Enemies.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
+            Enemies.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
         }
 
         protected override void OnDisableSystem() {
-            State.Reset();
-            player = null;
+            Enemies.Reset();
         }
 
 
         public void UpdateSystem(float deltaTime) {
             // Spawn
-            if ((State.AsteroidSpawnCountdown -= deltaTime) <= 0) {
+            if ((Enemies.AsteroidSpawnCountdown -= deltaTime) <= 0) {
                 // Check asteroids count limit
                 int totalActiveAsteroids = ActiveAsteroids.Count;
                 if (totalActiveAsteroids < LevelConfig.AsteroidsLimit) {
-                    State.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
+                    Enemies.AsteroidSpawnCountdown = 1 / LevelConfig.AsteroidsSpawnRate;
                     SpawnAsteroid();
                 }
             }
 
-            if ((State.UfoSpawnCountdown -= deltaTime) <= 0) {
+            if ((Enemies.UfoSpawnCountdown -= deltaTime) <= 0) {
                 int totalActiveUfo = ActiveUfos.Count;
                 if (totalActiveUfo < LevelConfig.UfosLimit) {
-                    State.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
+                    Enemies.UfoSpawnCountdown = 1 / LevelConfig.UfoSpawnRate;
                     SpawnUfo();
                 }
             }
@@ -100,7 +99,7 @@ namespace Asteroids.Core.World.Enemies {
         private void SpawnUfo() {
             Vector3 position = GetRandomSpawnPosition();
             Vector3 direction = GetRandomDirection(position);
-            UfoSpawner.Spawn(position, direction, player);
+            UfoSpawner.Spawn(position, direction, Players.Active);
         }
 
 

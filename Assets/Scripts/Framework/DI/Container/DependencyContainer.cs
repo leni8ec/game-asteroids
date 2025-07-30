@@ -78,7 +78,7 @@ namespace Asteroids.Framework.DI.Container {
             // Registration registration = registry.FirstOrDefault(o => abstractType.IsAssignableFrom(o.AbstractType)); // hack (not used)
             Registration registration = registry.FirstOrDefault(o => o.AbstractType == abstractType);
             if (registration == null)
-                throw new DependencyResolveException($"The type {abstractType.Name} has not been registered");
+                throw new DependencyResolveException($"Failed to resolve unregistered type: '{abstractType.Name}'");
 
             return registration.TakeInstance();
         }

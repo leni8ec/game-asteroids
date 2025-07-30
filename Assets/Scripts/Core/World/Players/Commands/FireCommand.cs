@@ -1,7 +1,7 @@
-﻿using Asteroids.Core.World.Weapon;
+﻿using Asteroids.Core.World.Players.Weapons;
 using Asteroids.Framework.Command;
 
-namespace Asteroids.GUI.Input.Commands {
+namespace Asteroids.Core.World.Players.Commands {
     public class FireCommand : CommandBase<WeaponState> {
 
         public FireCommand(WeaponState state) : base(state) { }

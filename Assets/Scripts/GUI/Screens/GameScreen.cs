@@ -1,7 +1,7 @@
 ﻿using Asteroids.Core.Actors.Player;
-using Asteroids.Core.World.Entities.State;
+using Asteroids.Core.World.Players.Common;
+using Asteroids.Core.World.Players.Weapons;
 using Asteroids.Core.World.Score;
-using Asteroids.Core.World.Weapon;
 using Asteroids.GUI.Base;
 using TMPro;
 using UnityEngine;
@@ -24,12 +24,12 @@ namespace Asteroids.GUI.Screens {
         public TextMeshProUGUI weapon1Countdown;
         public TextMeshProUGUI weapon2Countdown;
 
-        private EntitiesState entities;
+        private PlayersState players;
         private ScoreState score;
         private WeaponState weapon;
 
         private void Start() {
-            entities = GetState<EntitiesState>();
+            players = GetState<PlayersState>();
             score = GetState<ScoreState>();
             weapon = GetState<WeaponState>();
 
@@ -45,7 +45,7 @@ namespace Asteroids.GUI.Screens {
         }
 
         private void Update() {
-            Player player = entities.Player;
+            Player player = players.Active;
             if (player == null) return; // if player doesn't initialize
 
             UpdateText(player);

@@ -1,18 +1,16 @@
 ﻿using Asteroids.Core.Actors.Player.Services;
-using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Game;
 using Asteroids.Framework.Systems;
 using JetBrains.Annotations;
 
-namespace Asteroids.Core.World.Players {
+namespace Asteroids.Core.World.Players.Common {
     [UsedImplicitly]
-    public class PlayersSystem : SystemBase, IPlayersSystem {
-        private PlayerSpawner Spawner { get; }
-        private EntitiesState EntitiesState { get; }
+    public class PlayersSystem : System<PlayersState>, IPlayersSystem {
 
-        public PlayersSystem(PlayerSpawner spawner, GameState gameState, EntitiesState entitiesState) {
+        private PlayerSpawner Spawner { get; }
+
+        public PlayersSystem(PlayersState state, PlayerSpawner spawner, GameState gameState) : base(state) {
             Spawner = spawner;
-            EntitiesState = entitiesState;
 
             // Game state events
             RegisterSystemActivityFlag(gameState.LevelActiveFlag);
@@ -20,12 +18,13 @@ namespace Asteroids.Core.World.Players {
 
         protected override void OnEnableSystem() {
             // Create player
-            EntitiesState.Player = Spawner.Spawn();
+            State.Active = Spawner.Spawn();
         }
 
         protected override void OnDisableSystem() {
-            EntitiesState.Player.Despawn();
-            EntitiesState.Player = null;
+            // Destroy player
+            State.Active.Despawn();
+            State.Active = null;
         }
 
     }

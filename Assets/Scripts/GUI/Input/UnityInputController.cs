@@ -1,7 +1,10 @@
-﻿using Asteroids.Core.World.Entities.State;
+﻿using System.Collections.Generic;
 using Asteroids.Core.World.Game;
-using Asteroids.Core.World.Weapon;
+using Asteroids.Core.World.Players.Common;
+using Asteroids.Core.World.Players.Weapons;
+using Asteroids.Framework.Reactive;
 using Asteroids.GUI.Base;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Asteroids.GUI.Input {
@@ -16,69 +19,77 @@ namespace Asteroids.GUI.Input {
         // Game Actions
         public InputAction continueAction;
 
-        private InputHandler handler;
+        // Input handler
+        private readonly InputHandler handler = new();
 
+        // Actions lists
+        private readonly List<InputAction> gameActions = new();
+        private readonly List<InputAction> menuActions = new();
 
-        private void Start() {
-            UpdateHandler();
-
-            moveAction.performed += context => OnMoveAction(true, context);
-            rotateAction.performed += context => OnRotateAction(true, context);
-            fire1Action.performed += context => OnFireAction(true, 1 << 0, context);
-            fire2Action.performed += context => OnFireAction(true, 2 << 0, context);
-
-            moveAction.canceled += context => OnMoveAction(false, context);
-            rotateAction.canceled += context => OnRotateAction(false, context);
-            fire1Action.canceled += context => OnFireAction(false, 1 << 0, context);
-            fire2Action.canceled += context => OnFireAction(false, 2 << 0, context);
-
-            continueAction.performed += OnContinueAction;
+        private void Awake() {
+            ListActions();
+            SetupHandler();
+            SetupActions();
         }
 
-        private void UpdateHandler() {
+        private void ListActions() {
+            gameActions.Add(moveAction);
+            gameActions.Add(rotateAction);
+            gameActions.Add(fire1Action);
+            gameActions.Add(fire2Action);
+
+            menuActions.Add(continueAction);
+        }
+
+        private void SetupActions() {
+            moveAction.performed += handler.OnMoveAction;
+            rotateAction.performed += handler.OnRotateAction;
+            fire1Action.performed += handler.OnFire1Action;
+            fire2Action.performed += handler.OnFire2Action;
+
+            moveAction.canceled += handler.OnMoveAction;
+            rotateAction.canceled += handler.OnRotateAction;
+            fire1Action.canceled += handler.OnFire1Action;
+            fire2Action.canceled += handler.OnFire2Action;
+
+            continueAction.performed += handler.OnContinueAction;
+        }
+
+        private void SetupHandler() {
             WeaponState weaponState = GetState<WeaponState>();
-            EntitiesState entitiesState = GetState<EntitiesState>();
+            PlayersState playersState = GetState<PlayersState>();
             GameState gameState = GetState<GameState>();
-            handler = new InputHandler(weaponState, entitiesState, gameState);
+            CommandsRegistry commands = new(weaponState, playersState, gameState);
+
+            handler.Setup(commands);
         }
 
 
         private void OnEnable() {
-            GetState<GameState>().LevelActiveFlag.Enabled += UpdateHandler;
-
-            moveAction.Enable();
-            rotateAction.Enable();
-            fire1Action.Enable();
-            fire2Action.Enable();
-            continueAction.Enable();
+            ReactiveFlag levelActiveFlag = GetState<GameState>().LevelActiveFlag;
+            levelActiveFlag.Changed += OnLevelActiveChanged;
+            OnLevelActiveChanged(levelActiveFlag);
         }
 
+        // note: hack
+        // Use 'Dispose' for disable actions, not 'Disable' or 'Reset',
+        // because it will be call canceled trigger of the action
         private void OnDisable() {
-            GetState<GameState>().LevelActiveFlag.Enabled -= UpdateHandler;
-
-            moveAction.Enable();
-            moveAction.Disable();
-            rotateAction.Disable();
-            fire1Action.Disable();
-            fire2Action.Disable();
-            continueAction.Disable();
+            GetState<GameState>().LevelActiveFlag.Changed -= OnLevelActiveChanged;
+            foreach (InputAction action in gameActions) action.Dispose();
+            foreach (InputAction action in menuActions) action.Dispose();
         }
 
+        private void OnLevelActiveChanged(bool active) {
+            foreach (InputAction gameAction in gameActions) {
+                if (active) gameAction.Enable();
+                else gameAction.Dispose();
 
-        private void OnFireAction(bool actionFlag, int weaponNumber, InputAction.CallbackContext context) {
-            handler.FireCommand.Execute(actionFlag, weaponNumber);
-        }
-
-        private void OnMoveAction(bool actionFlag, InputAction.CallbackContext context) {
-            handler.MoveCommand.Execute(actionFlag);
-        }
-
-        private void OnRotateAction(bool actionFlag, InputAction.CallbackContext context) {
-            handler.RotateCommand.Execute(actionFlag, -context.ReadValue<float>()); // send inversion value of rotation
-        }
-
-        private void OnContinueAction(InputAction.CallbackContext context) {
-            handler.StartGameCommand.Execute();
+            }
+            foreach (InputAction menuAction in menuActions) {
+                if (active) menuAction.Disable();
+                else menuAction.Enable();
+            }
         }
 
     }

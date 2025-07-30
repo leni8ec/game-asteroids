@@ -6,10 +6,10 @@ using Asteroids.Core.World.Enemies;
 using Asteroids.Core.World.Enemies.Asteroids;
 using Asteroids.Core.World.Entities.Systems;
 using Asteroids.Core.World.Game;
-using Asteroids.Core.World.Players;
+using Asteroids.Core.World.Players.Common;
+using Asteroids.Core.World.Players.Weapons;
 using Asteroids.Core.World.Score;
 using Asteroids.Core.World.Screen;
-using Asteroids.Core.World.Weapon;
 using Asteroids.Framework.DI.Broker;
 using Asteroids.Framework.DI.Container;
 using Asteroids.Framework.Systems;
@@ -26,7 +26,7 @@ namespace Asteroids.Core.World.Common.Context {
 
         public List<ISystem> ResolveFrom(IDependencyContainer container) {
             return new List<ISystem> {
-                container.Resolve<IEntityActiveRegisterSystem>(), //0. Register active entities (from spawners)
+                container.Resolve<IEntityRegisterSystem>(), //0. Register active entities (from spawners)
                 container.Resolve<IPlayersSystem>(), //             1. Players (player control)
                 container.Resolve<IWeaponSystem>(), //              2. Weapon (spawn ammo)
                 container.Resolve<IEnemiesSystem>(), //             3. Enemies (spawn enemies)

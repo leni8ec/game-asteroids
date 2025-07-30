@@ -1,7 +1,7 @@
 ﻿using System;
 using Asteroids.Framework.State;
 
-namespace Asteroids.Core.World.Weapon {
+namespace Asteroids.Core.World.Players.Weapons {
     public class WeaponState : IState {
 
         // Input state

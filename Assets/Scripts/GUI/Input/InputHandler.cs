@@ -1,23 +1,42 @@
-using Asteroids.Core.World.Entities.State;
-using Asteroids.Core.World.Game;
-using Asteroids.Core.World.Weapon;
-using Asteroids.GUI.Input.Commands;
+using Asteroids.Core.World.Game.Commands;
+using Asteroids.Core.World.Players.Commands;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Asteroids.GUI.Input {
 
     public class InputHandler {
 
-        public FireCommand FireCommand { get; }
-        public MoveCommand MoveCommand { get; }
-        public RotateCommand RotateCommand { get; }
-        public StartGameCommand StartGameCommand { get; }
+        private CommandsRegistry Commands { get; set; }
 
-        public InputHandler(WeaponState weaponState, EntitiesState entitiesState, GameState gameState) {
+        public void Setup(CommandsRegistry commands) {
+            Commands = commands;
+        }
 
-            FireCommand = new FireCommand(weaponState);
-            MoveCommand = new MoveCommand(entitiesState.Player.State);
-            RotateCommand = new RotateCommand(entitiesState.Player.State);
-            StartGameCommand = new StartGameCommand(gameState);
+        public void OnMoveAction(InputAction.CallbackContext input) {
+            bool actionFlag = input.phase == InputActionPhase.Performed;
+            Commands.Get<MoveCommand>().Execute(actionFlag);
+        }
+
+        public void OnRotateAction(InputAction.CallbackContext input) {
+            bool actionFlag = input.phase == InputActionPhase.Performed;
+            Commands.Get<RotateCommand>().Execute(actionFlag, -input.ReadValue<float>()); // send inversion value of rotation
+        }
+
+        public void OnFire1Action(InputAction.CallbackContext input) {
+            bool actionFlag = input.phase == InputActionPhase.Performed;
+            const int weaponNumber = 1;
+            Commands.Get<FireCommand>().Execute(actionFlag, weaponNumber);
+        }
+
+        public void OnFire2Action(InputAction.CallbackContext input) {
+            bool actionFlag = input.phase == InputActionPhase.Performed;
+            const int weaponNumber = 2;
+            Commands.Get<FireCommand>().Execute(actionFlag, weaponNumber);
+        }
+
+        public void OnContinueAction(InputAction.CallbackContext input) {
+            Commands.Get<StartGameCommand>().Execute();
         }
 
     }

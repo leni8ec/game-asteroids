@@ -7,39 +7,39 @@
             "actions": [
                 {
                     "name": "Move",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "0a96974b-b0db-4ea9-9ce5-a0e77e679dcf",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Rotate",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "df13c93a-b4e3-4cc1-8ff1-00a7cb7b4b44",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire1",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "16f40dcb-0ebe-45ec-aaf6-2d925244ed89",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Fire2",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "fe03ed2c-1494-4d9d-9896-28b37bd143ad",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

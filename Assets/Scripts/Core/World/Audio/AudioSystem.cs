@@ -3,7 +3,7 @@ using Asteroids.Core.Actors.Enemies.Ufo;
 using Asteroids.Core.Actors.Player;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Game;
-using Asteroids.Core.World.Weapon;
+using Asteroids.Core.World.Players.Weapons;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;

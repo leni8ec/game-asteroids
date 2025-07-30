@@ -1,5 +1,5 @@
 ﻿using Asteroids.Framework.Systems;
 
-namespace Asteroids.Core.World.Weapon {
+namespace Asteroids.Core.World.Players.Weapons {
     public interface IWeaponSystem : ISystem { }
 }

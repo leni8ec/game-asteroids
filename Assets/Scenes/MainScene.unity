@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Press \xABEnter\xBB to continue"
+  m_text: "Press \xABSpace\xBB to play"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 95489489}
   - component: {fileID: 95489490}
   m_Layer: 0
-  m_Name: AudioSource
+  m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 504463728}
   - component: {fileID: 504463729}
   m_Layer: 0
-  m_Name: InputListener
+  m_Name: Input Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,163 +949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d02bc3f9ef499f8eb8e47b5f6093a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAction:
-    m_Name: Move
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 6b6a9df6-2959-4acd-b786-3d85d2513803
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: a065fac9-fe6a-4612-9b12-7fe021cd482f
-      m_Path: <Keyboard>/upArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 4f1f3304-9414-4c4c-adf4-daa39bcb6e02
-      m_Path: <Keyboard>/w
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move
-      m_Flags: 0
-    m_Flags: 0
-  rotateAction:
-    m_Name: Rotate
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: b655596f-ca5e-435b-943b-716356331a48
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: Arrows
-      m_Id: 5c378390-5253-4fb1-93a5-09559b920913
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: cbc6f41a-ef91-4fd1-9f12-a082c90661ed
-      m_Path: <Keyboard>/leftArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 2ce6da45-5f5a-43fe-ad65-f9ddbff38f97
-      m_Path: <Keyboard>/rightArrow
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    - m_Name: WASD
-      m_Id: 58bb5cc7-bc47-4d02-bef3-0800558d370c
-      m_Path: 1DAxis
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 989df316-bc29-4e85-80a1-12605df07399
-      m_Path: <Keyboard>/a
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 50be04f6-9e18-42de-91c3-2b19313c9d48
-      m_Path: <Keyboard>/d
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate
-      m_Flags: 8
-    m_Flags: 0
-  fire1Action:
-    m_Name: Fire 1
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 554d1f3e-478e-45d7-be73-319f1974c1b9
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8ef7fa96-e229-4d6e-a8fc-0aea7ce5b4ed
-      m_Path: <Keyboard>/space
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire 1
-      m_Flags: 0
-    - m_Name: 
-      m_Id: b4389ad1-ce20-45f8-afce-f7d5e26583f2
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire 1
-      m_Flags: 0
-    m_Flags: 0
-  fire2Action:
-    m_Name: Fire 2
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 033560d3-98b4-4aa2-b2db-50e9307b52be
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 681944e7-9c83-4802-8a9d-069499ef28b7
-      m_Path: <Keyboard>/ctrl
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire 2
-      m_Flags: 0
-    - m_Name: 
-      m_Id: a19eaf1d-5a59-4772-8000-6bf92718d87a
-      m_Path: <Mouse>/rightButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Fire 2
-      m_Flags: 0
-    m_Flags: 0
-  continueAction:
-    m_Name: Continue
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 3f5b604d-f4c8-4170-8d3d-3440eb387d37
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: cfb2d72f-97cc-403c-b03d-520ff06dcce7
-      m_Path: <Keyboard>/enter
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Continue
-      m_Flags: 0
-    - m_Name: 
-      m_Id: fdcbf756-44f1-4114-869e-153a477c39c1
-      m_Path: <Keyboard>/numpadEnter
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Continue
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

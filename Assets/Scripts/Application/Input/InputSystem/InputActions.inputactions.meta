@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 901eade907c36334da68fee7a68bc732
+guid: 66e6304a21d002846b3dfeda0fb1c04e
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -11,4 +11,4 @@ ScriptedImporter:
   generateWrapperCode: 1
   wrapperCodePath: 
   wrapperClassName: 
-  wrapperCodeNamespace: 
+  wrapperCodeNamespace: Asteroids.Application.Input.InputSystem

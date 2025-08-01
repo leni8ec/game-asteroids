@@ -23,6 +23,7 @@ namespace Asteroids.Framework.Entity.Services.Spawner {
         private readonly Dictionary<TKey, IPool<TEntity>> pools = new();
 
         protected PoolableBunchEntitySpawner(TFactory factory) {
+            factory.UseContainer("Pool");
             Factory = factory;
         }
 

@@ -11,19 +11,21 @@ namespace Asteroids.Framework.Entity.Services.Factory {
         where TView : IEntityView
         where TState : EntityState {
 
-        protected T CreateInternal(EntityConfig config) {
+        protected EntityContainer Container { private get; set; }
 
+        protected T CreateInternal(EntityConfig config) {
             // Create GameObject
-            GameObject playerObject = Object.Instantiate(config.Prefab);
+            GameObject gameObject = Object.Instantiate(config.Prefab);
+            Container?.Add(gameObject);
 
             // Create Model
             T model = new();
 
             // Add State Component
-            TState state = playerObject.AddComponent<TState>();
+            TState state = gameObject.AddComponent<TState>();
 
             // Get View Component
-            TView view = playerObject.GetComponent<TView>();
+            TView view = gameObject.GetComponent<TView>();
 
             // Initialization
             model.Initialize(config, state);
@@ -33,12 +35,15 @@ namespace Asteroids.Framework.Entity.Services.Factory {
 
 #if UNITY_EDITOR
             // Editor usability: set State component as first in game object
-            int moveSteps = playerObject.GetComponentCount() - 1;
+            int moveSteps = gameObject.GetComponentCount() - 1;
             while (moveSteps-- > 0) ComponentUtility.MoveComponentUp(state);
 #endif
 
             return model;
         }
 
+        public void UseContainer(string containerName = null) {
+            Container = new EntityContainer(containerName);
+        }
     }
 }

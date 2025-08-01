@@ -3,7 +3,12 @@
 namespace Asteroids.Framework.Entity.Services.Factory {
 
     /// Entity factory
-    public interface IEntityFactory { }
+    public interface IEntityFactory {
+
+        /// <inheritdoc cref="EntityContainer(string)"/>
+        void UseContainer(string containerName = null);
+
+    }
 
     /// Entity factory
     public interface IEntityFactory<TEntity> : IEntityFactory

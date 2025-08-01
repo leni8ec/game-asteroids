@@ -14,6 +14,7 @@ namespace Asteroids.Framework.Entity.Services.Spawner {
         private readonly IPool<TEntity> pool;
 
         protected PoolableEntitySpawner(TFactory factory) {
+            factory.UseContainer("Pool");
             pool = factory.GeneratePool();
             activeEntities.Capacity = pool.InitialCapacity;
         }

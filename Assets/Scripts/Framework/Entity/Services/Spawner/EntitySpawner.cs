@@ -15,6 +15,7 @@ namespace Asteroids.Framework.Entity.Services.Spawner {
         private TFactory Factory { get; }
 
         protected EntitySpawner(TFactory factory) {
+            factory.UseContainer();
             Factory = factory;
         }
 

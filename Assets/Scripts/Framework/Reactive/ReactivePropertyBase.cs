@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 
 namespace Asteroids.Framework.Reactive {
-#pragma warning disable CS0660, CS0661
-    public abstract class ReactivePropertyBase<T> : IReactiveProperty<T> {
+    public abstract class ReactivePropertyBase<T> : IReactiveProperty<T>, IDisposable {
 
         public abstract event Action<T> Changed;
 
@@ -15,14 +15,17 @@ namespace Asteroids.Framework.Reactive {
         /// </returns>
         public abstract bool Set(T value);
 
+        /// Reset property value (reactive callback will be raised)
+        public abstract void Reset();
+
         /// Set value without reactive callback raised
         public abstract void SetQuietly(T value);
 
         /// Reset value without reactive callback raised
-        public abstract void ResetValueQuietly();
+        public abstract void ResetQuietly();
 
-        /// Reset property and remove all observers
-        public abstract void Reset();
+        /// Quietly reset value (without reactive callback raised) and remove all observers
+        public abstract void Dispose();
 
 
     #region Override assignment operators
@@ -37,7 +40,7 @@ namespace Asteroids.Framework.Reactive {
     #endregion
 
 
-    #region Override compare operators
+    #region Override equality (compare) operators
 
         public static bool operator ==(ReactivePropertyBase<T> lhs, ReactivePropertyBase<T> rhs) {
             return lhs is not null && rhs is not null && lhs.Value.Equals(rhs.Value);
@@ -61,6 +64,21 @@ namespace Asteroids.Framework.Reactive {
 
         public static bool operator !=(T lhsVal, ReactivePropertyBase<T> rhs) {
             return !(lhsVal == rhs);
+        }
+
+        protected bool Equals(ReactivePropertyBase<T> other) {
+            return EqualityComparer<T>.Default.Equals(Value, other.Value);
+        }
+
+        public override bool Equals(object obj) {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((ReactivePropertyBase<T>) obj);
+        }
+
+        public override int GetHashCode() {
+            return EqualityComparer<T>.Default.GetHashCode(Value);
         }
 
     #endregion

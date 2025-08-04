@@ -1,6 +1,7 @@
 using System;
 
 namespace Asteroids.Framework.Reactive {
+    /// This feature is not used yet.
     public class ReferenceReactiveProperty<T> : ReactivePropertyBase<T>, IReactiveProperty<T> {
 
         private readonly Func<T> getValue;
@@ -22,18 +23,25 @@ namespace Asteroids.Framework.Reactive {
             return true;
         }
 
+        public override void Reset() {
+            Set(default);
+        }
+
         public override void SetQuietly(T value) {
+            if (Equals(getValue(), value)) return;
             setValue(value);
         }
 
-        public override void ResetValueQuietly() {
+        public override void ResetQuietly() {
+            if (Equals(getValue(), default)) return;
             setValue(default);
         }
 
-        public override void Reset() {
-            ResetValueQuietly();
+        public override void Dispose() {
+            ResetQuietly();
             Changed = null;
         }
+
 
     }
 }

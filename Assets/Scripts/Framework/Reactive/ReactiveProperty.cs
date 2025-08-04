@@ -12,13 +12,13 @@ namespace Asteroids.Framework.Reactive {
         private T value;
         public override T Value { get => value; set => Set(value); }
 
-        // /// <summary>
-        // /// Property with a specified initial value
-        // /// </summary>
-        // /// <param name="value">initial value</param>
-        // public ReactiveProperty(T value) {
-        //     this.value = value;
-        // }
+        /// <summary>
+        /// Reactive Property
+        /// </summary>
+        /// <param name="value"> initial value (*optional) </param>
+        public ReactiveProperty(T value = default) {
+            this.value = value;
+        }
 
         public override bool Set(T value) {
             if (Equals(this.value, value)) return false;
@@ -27,16 +27,20 @@ namespace Asteroids.Framework.Reactive {
             return true;
         }
 
+        public override void Reset() {
+            Set(default);
+        }
+
         public override void SetQuietly(T value) {
             this.value = value;
         }
 
-        public override void ResetValueQuietly() {
+        public override void ResetQuietly() {
             value = default;
         }
 
-        public override void Reset() {
-            ResetValueQuietly();
+        public override void Dispose() {
+            ResetQuietly();
             Changed = null;
         }
 

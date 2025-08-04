@@ -56,8 +56,8 @@ namespace Asteroids.Core.Actors.Player {
 
 
         protected override void OnReset() {
-            Move.ResetValueQuietly();
-            Rotate.ResetValueQuietly();
+            Move.ResetQuietly();
+            Rotate.ResetQuietly();
             inertialSpeed = default;
             inertialTime = default;
             lastDirection = default;

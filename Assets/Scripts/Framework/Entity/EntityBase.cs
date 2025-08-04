@@ -11,7 +11,7 @@ namespace Asteroids.Framework.Entity {
         /// <summary>
         /// The world space rotation as Euler angles in degrees
         /// </summary>
-        public abstract Vector3 Rotation { get; set; }
+        public abstract float Rotation { get; set; }
         /// <summary>
         /// The world space forward direction of entity (transform.up)
         /// </summary>

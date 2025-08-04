@@ -5,6 +5,7 @@ using Asteroids.GUI.Screens;
 using UnityEngine;
 
 namespace Asteroids.GUI.Controllers {
+    // todo-refactor: this temporary hack needs to be replaced with a complete solution (state machine?)
     public class GameStateListener : GuiMono {
         public GameObject bgAudio;
         public GameScreen gameScreen;
@@ -19,12 +20,12 @@ namespace Asteroids.GUI.Controllers {
 
         private void OnGameStatusChanged(GameStatus gameStatus) {
             if (gameStatus == GameStatus.Play) {
-                gameScreen.gameObject.SetActive(true);
-                gameOverScreen.gameObject.SetActive(false);
+                gameScreen.SetActive(true);
+                gameOverScreen.SetActive(false);
                 bgAudio.SetActive(true);
             } else {
-                gameScreen.gameObject.SetActive(false);
-                gameOverScreen.gameObject.SetActive(true);
+                gameScreen.SetActive(false);
+                gameOverScreen.SetActive(true);
                 bgAudio.SetActive(false);
             }
         }

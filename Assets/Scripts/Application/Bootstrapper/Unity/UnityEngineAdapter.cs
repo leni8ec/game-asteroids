@@ -4,6 +4,7 @@ using Asteroids.Application.Bootstrapper.Project;
 using Asteroids.Core.World.Scene;
 using Asteroids.Framework.DI.Container;
 using Asteroids.GUI.Base;
+using Asteroids.GUI.Context;
 using UnityEngine;
 
 namespace Asteroids.Application.Bootstrapper.Unity {
@@ -13,8 +14,9 @@ namespace Asteroids.Application.Bootstrapper.Unity {
     /// </summary>
     [DefaultExecutionOrder(-100)]
     public class UnityEngineAdapter : MonoBehaviour {
-        [Space]
+        [Header("Context")]
         [SerializeField] private SceneContext sceneContext;
+        [SerializeField] private GuiContext guiContext;
 
         private Engine engine;
 
@@ -23,7 +25,7 @@ namespace Asteroids.Application.Bootstrapper.Unity {
             // Load project config
             ProjectConfig config = Resources.Load<ProjectConfig>(ProjectConfig.RESOURCE_PATH);
             // Init project context
-            ProjectContext context = new(config, sceneContext);
+            ProjectContext context = new(config, sceneContext, guiContext);
 
             // Create dependency container
             IDependencyContainer container = new DependencyContainer();
@@ -39,7 +41,7 @@ namespace Asteroids.Application.Bootstrapper.Unity {
         }
 
         private void OnDestroy() {
-            GuiMono.ResetInjection();
+            GuiMono.Dispose();
         }
 
         private void FixedUpdate() {

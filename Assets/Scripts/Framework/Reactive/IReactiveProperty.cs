@@ -15,4 +15,17 @@ namespace Asteroids.Framework.Reactive {
         T Value { get; }
 
     }
+
+    // public interface IObservableValue<out T> : IValue<T> {
+    //     event Action<T> Changed;
+    // }
+    //
+    // public interface IValue<out T> : IValue {
+    //     T Value { get; }
+    // }
+    //
+    // public interface IValue {
+    //     Type Type { get; }
+    // }
+
 }

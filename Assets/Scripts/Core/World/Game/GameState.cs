@@ -13,8 +13,8 @@ namespace Asteroids.Core.World.Game {
 
 
         public void Reset() {
-            LevelActiveFlag.ResetValueQuietly();
-            Status.ResetValueQuietly();
+            LevelActiveFlag.ResetQuietly();
+            Status.ResetQuietly();
         }
 
     }

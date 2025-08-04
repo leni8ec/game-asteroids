@@ -8,9 +8,9 @@ namespace Asteroids.Core.World.Scene {
         [Space] [SerializeField]
         private SceneAdaptersContext sceneAdapters;
 
-
         public void InstallTo(IDependencyContainer container) {
             sceneAdapters.InstallTo(container);
         }
+
     }
 }

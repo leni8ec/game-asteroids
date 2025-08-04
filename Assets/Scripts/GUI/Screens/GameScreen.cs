@@ -2,7 +2,9 @@
 using Asteroids.Core.World.Players.Common;
 using Asteroids.Core.World.Players.Weapons;
 using Asteroids.Core.World.Score;
+using Asteroids.Framework.Reactive;
 using Asteroids.GUI.Base;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
@@ -10,11 +12,7 @@ namespace Asteroids.GUI.Screens {
     // todo-later: add
     // - active enemies counts
     // - enemy spawn countdowns
-
-    // todo-consider: optimize text formatting (to don't update text on every frame)
-    // - may-be use a reactive properties (with presenter)?
-    // - or use a 'ViewModel' with binders?
-    public class GameScreen : GuiMono {
+    public class GameScreen : UpdateableView {
         public TextMeshProUGUI points;
         public TextMeshProUGUI coords;
         public TextMeshProUGUI angle;
@@ -24,110 +22,70 @@ namespace Asteroids.GUI.Screens {
         public TextMeshProUGUI weapon1Countdown;
         public TextMeshProUGUI weapon2Countdown;
 
+
+        public void SetScore(int value) => points.SetText($"Score: {value}");
+
+        public void SetPlayerPosition(Vector3 value) => coords.SetText($"Coords: [ {value.x:F1} : {value.y:F1} ]");
+
+        public void SetPlayerAngle(float value) => angle.SetText($"Angle: {value:F0}");
+
+        public void SetPlayerSpeed(float value) => speed.SetText($"Speed: {value:N}");
+
+        public void SetLaserCount(int value) => laserCount.text = $"Laser Count: {value}";
+
+        public void SetLaserRefillCountdown(float value) => laserRefillCountdown.text = $"Laser Countdown: {value:0.00}";
+
+        public void SetWeapon1Countdown(float value) => weapon1Countdown.text = $"Weapon 1 countdown: {value:0.00}";
+
+        public void SetWeapon2Countdown(float value) => weapon2Countdown.text = $"Weapon 2 countdown: {value:0.00}";
+
+    }
+
+    [UsedImplicitly]
+    internal class GameScreenPresenter : UpdateablePresenter<GameScreen> {
+
         private PlayersState players;
         private ScoreState score;
         private WeaponState weapon;
 
-        private void Start() {
+        private readonly ReactiveProperty<Vector3> playerPosition = new();
+        private readonly ReactiveProperty<float> playerRotation = new();
+        private readonly ReactiveProperty<float> playerSpeed = new();
+        private readonly ReactiveProperty<float> laserRefillCountdown = new();
+        private readonly ReactiveProperty<float> weapon1Countdown = new();
+        private readonly ReactiveProperty<float> weapon2Countdown = new();
+
+        public override void Construct() {
             players = GetState<PlayersState>();
             score = GetState<ScoreState>();
             weapon = GetState<WeaponState>();
 
-            score.Points.Changed += SetScore;
+            Subscribe(score.Points, View.SetScore);
+            Subscribe(weapon.LaserShotsCount, View.SetLaserCount);
+
+            Subscribe(playerPosition, View.SetPlayerPosition);
+            Subscribe(playerRotation, View.SetPlayerAngle);
+            Subscribe(playerSpeed, View.SetPlayerSpeed);
+            Subscribe(laserRefillCountdown, View.SetLaserRefillCountdown);
+            Subscribe(weapon1Countdown, View.SetWeapon1Countdown);
+            Subscribe(weapon2Countdown, View.SetWeapon2Countdown);
         }
 
-        private void OnEnable() {
-            SetScore(0);
-        }
+        protected override void OnEnableView() { }
 
-        private void SetScore(int value) {
-            points.SetText($"Score: {value}");
-        }
+        protected override void OnDisableView() { }
 
-        private void Update() {
+        protected override void OnUpdateView() {
             Player player = players.Active;
-            if (player == null) return; // if player doesn't initialize
-
-            UpdateText(player);
+            if (player != null) {
+                playerPosition.Value = player.Position;
+                playerRotation.Value = player.Rotation;
+                playerSpeed.Value = player.State.speed;
+            }
+            laserRefillCountdown.Value = weapon.LaserRefillCountdown;
+            weapon1Countdown.Value = weapon.Fire1Countdown;
+            weapon2Countdown.Value = weapon.Fire2Countdown;
         }
-
-        private void UpdateText(Player player) {
-            Vector3 playerPosition = player.Position;
-            Vector3 playerRotation = player.Rotation;
-            float playerSpeed = player.State.speed;
-
-            // TestMethodFormattingText(playerPosition, playerRotation, playerSpeed);
-            // TestMethodFormattingTextByTMP(playerPosition, playerRotation, playerSpeed);
-            TestPropertyFormattingTest(playerPosition, playerRotation, playerSpeed);
-            // TestPropertyDummy();
-            // TestMethodDummy();
-        }
-
-
-    #region TMP performance tests of the set text field values
-
-        // 'text' property - doesn't update canvas if it's value not changed, when 'SetText' - will be update text on every call
-        // Sources
-        // - https://discussions.unity.com/t/textmesh-pro-text-vs-settext-setchararray-significant-performance-differences/921981/3
-        // - https://discussions.unity.com/t/textmeshpro-update-gc-in-editor/892282
-
-        // slowly, if called on every update method
-        private void TestMethodFormattingText(Vector3 playerPosition, Vector3 playerRotation, float playerSpeed) {
-            coords.SetText($"Coords: [ {playerPosition.x:F1} : {playerPosition.y:F1} ]");
-            angle.SetText($"Angle: {playerRotation.z:F0}");
-            speed.SetText($"Speed: {playerSpeed:N}");
-            laserCount.SetText($"Laser Count: {weapon.LaserShotsCount}");
-            laserRefillCountdown.SetText($"Laser Countdown: {weapon.LaserRefillCountdown:0.00}");
-            weapon1Countdown.SetText($"Weapon 1 countdown: {weapon.Fire1Countdown:0.00}");
-            weapon2Countdown.SetText($"Weapon 2 countdown: {weapon.Fire2Countdown:0.00}");
-        }
-
-        // It's identical to a 'TestMethodFormattingText' (by comparing performance in unity profiler)
-        private void TestMethodFormattingTextByTMP(Vector3 playerPosition, Vector3 playerRotation, float playerSpeed) {
-            coords.SetText("Coords: [ {0:0.0} : {1:0.0} ]", playerPosition.x, playerPosition.y);
-            angle.SetText("Angle: {0:0}", playerRotation.z);
-            speed.SetText("Speed: {0:0.00}", playerSpeed);
-            laserCount.SetText("Laser Count: {0}", weapon.LaserShotsCount);
-            laserRefillCountdown.SetText("Laser Countdown: {0:0.00}", weapon.LaserRefillCountdown);
-            weapon1Countdown.SetText("Weapon 1 countdown: {0:0.00}", weapon.Fire1Countdown);
-            weapon2Countdown.SetText("Weapon 2 countdown: {0:0.00}", weapon.Fire2Countdown);
-        }
-
-        // Fastest variant (does not update the text if it has not changed)
-        private void TestPropertyFormattingTest(Vector3 playerPosition, Vector3 playerRotation, float playerSpeed) {
-            coords.text = $"Coords: [ {playerPosition.x:F1} : {playerPosition.y:F1} ]";
-            angle.text = $"Angle: {playerRotation.z:F0}";
-            speed.text = $"Speed: {playerSpeed:N}";
-            laserCount.text = $"Laser Count: {weapon.LaserShotsCount}";
-            laserRefillCountdown.text = $"Laser Countdown: {weapon.LaserRefillCountdown:0.00}";
-            weapon1Countdown.text = $"Weapon 1 countdown: {weapon.Fire1Countdown:0.00}";
-            weapon2Countdown.text = $"Weapon 2 countdown: {weapon.Fire2Countdown:0.00}";
-        }
-
-        // TMP fast variant (Property)
-        // (canvas is not updated if text value has not been changing)
-        private void TestPropertyDummy() {
-            angle.text = "text";
-            speed.text = "text";
-            laserCount.text = "text";
-            laserRefillCountdown.text = "text";
-            weapon1Countdown.text = "text";
-            weapon2Countdown.text = "text";
-        }
-
-        // TMP slow variant (Method)
-        // (canvas will be updated every time, it doesn't matter if the text value has been changed or not)
-        private void TestMethodDummy() {
-            angle.SetText("text");
-            speed.SetText("text");
-            laserCount.SetText("text");
-            laserRefillCountdown.SetText("text");
-            weapon1Countdown.SetText("text");
-            weapon2Countdown.SetText("text");
-        }
-
-    #endregion
-
 
     }
 }

@@ -42,7 +42,7 @@ namespace Asteroids.Core.World.Common.Systems {
             ActiveEntities.Get<Ufo>().ForEachDynamic(Despawn);
             ActiveEntities.Get<Asteroid>().ForEachDynamic(Despawn);
 
-            // todo: implement foreach (without player filter)
+            // todo-later: implement foreach (without player filter)
             // ActiveEntities.ForEach(Despawn);
             return;
             void Despawn(IEntity entity) => entity.Despawn();

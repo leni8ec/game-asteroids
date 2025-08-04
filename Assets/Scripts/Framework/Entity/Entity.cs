@@ -15,7 +15,14 @@ namespace Asteroids.Framework.Entity {
         // Sugar
         protected Transform Transform => State.Transform;
         public override Vector3 Position { get => Transform.position; set => Transform.position = value; }
-        public override Vector3 Rotation { get => Transform.eulerAngles; set => Transform.eulerAngles = value; }
+        public override float Rotation {
+            get => Transform.eulerAngles.z;
+            set {
+                Vector3 angles = Transform.eulerAngles;
+                angles.z = value;
+                Transform.eulerAngles = angles;
+            }
+        }
         public override Vector3 Forward => Transform.up;
 
         public override event Action DespawnEvent;

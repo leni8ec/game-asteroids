@@ -1,4 +1,5 @@
 ﻿using System;
+using Asteroids.Framework.Reactive;
 using Asteroids.Framework.State;
 
 namespace Asteroids.Core.World.Players.Weapons {
@@ -16,7 +17,7 @@ namespace Asteroids.Core.World.Players.Weapons {
 
         // Laser data
         public float LaserRefillCountdown { get; internal set; }
-        public float LaserShotsCount { get; internal set; }
+        public ReactiveInt LaserShotsCount { get; private set; } = new();
 
 
         // Events
@@ -29,7 +30,7 @@ namespace Asteroids.Core.World.Players.Weapons {
             Fire1Countdown = default;
             Fire2Countdown = default;
             LaserRefillCountdown = default;
-            LaserShotsCount = default;
+            LaserShotsCount.ResetQuietly();
 
             // Fire1Event = default;
             // Fire2Event = default;

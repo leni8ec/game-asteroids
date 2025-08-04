@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Asteroids.Core.Actors.Weapons.Arms.Laser {
-    // todo: split config to Arms and Ammo
+    // todo-later: split config to Arms and Ammo
     [CreateAssetMenu(menuName = "Configs/Laser Config")]
     public class LaserConfig : EntityConfig, IColliderRadiusContainer {
         [field: Space]

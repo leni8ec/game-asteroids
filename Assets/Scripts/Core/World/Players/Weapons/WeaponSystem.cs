@@ -5,6 +5,7 @@ using Asteroids.Core.Actors.Weapons.Arms.Gun;
 using Asteroids.Core.Actors.Weapons.Arms.Laser;
 using Asteroids.Core.World.Game;
 using Asteroids.Core.World.Players.Common;
+using Asteroids.Framework.Reactive;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;
@@ -65,7 +66,7 @@ namespace Asteroids.Core.World.Players.Weapons {
 
             if (fired && State.ActiveWeapons.HasFlag(Weapon.Laser) && State.Fire2Countdown <= 0 && State.LaserShotsCount > 0) {
                 State.Fire2Countdown = Fire2Delay;
-                State.LaserShotsCount--;
+                State.LaserShotsCount.Value--;
                 Fire2();
             }
 
@@ -76,7 +77,7 @@ namespace Asteroids.Core.World.Players.Weapons {
             if (State.LaserShotsCount < Ammo2Config.MaxShotsCount) {
                 if ((State.LaserRefillCountdown -= deltaTime) <= 0) {
                     State.LaserRefillCountdown = Ammo2Config.ShotRefillDuration;
-                    State.LaserShotsCount++;
+                    State.LaserShotsCount.Value++;
                 }
             }
 

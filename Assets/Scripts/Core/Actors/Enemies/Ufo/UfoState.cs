@@ -17,7 +17,7 @@ namespace Asteroids.Core.Actors.Enemies.Ufo {
 
 
         protected override void OnReset() {
-            Hunting.ResetValueQuietly();
+            Hunting.ResetQuietly();
             huntCountdown = default;
             target = default;
             Direction = default;

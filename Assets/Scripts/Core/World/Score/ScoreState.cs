@@ -7,7 +7,7 @@ namespace Asteroids.Core.World.Score {
         public ReactiveProperty<int> Points { get; } = new();
 
         public void Reset() {
-            Points.ResetValueQuietly();
+            Points.ResetQuietly();
         }
 
     }

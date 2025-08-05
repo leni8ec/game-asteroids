@@ -11,12 +11,8 @@ namespace Asteroids.Core.World.Players.Commands {
 
         /// <param name="activeFlag"></param>
         /// <param name="rotateValue"> Left: -1, Right: 1 </param>
-        public void Execute(bool activeFlag, float rotateValue) {
-            if (activeFlag) {
-                PlayerState.Rotate.Value = rotateValue < 0 ? -1 : 1;
-            } else {
-                PlayerState.Rotate.Value = 0;
-            }
+        public void Execute(float rotateValue) {
+            PlayerState.Rotate = rotateValue;
         }
 
     }

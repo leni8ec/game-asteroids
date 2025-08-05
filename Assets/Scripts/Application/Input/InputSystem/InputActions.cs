@@ -104,9 +104,9 @@ namespace Asteroids.Application.Input.InputSystem
                 },
                 {
                     ""name"": ""Rotate"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""df13c93a-b4e3-4cc1-8ff1-00a7cb7b4b44"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": true

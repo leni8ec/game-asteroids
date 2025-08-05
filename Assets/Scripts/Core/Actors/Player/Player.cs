@@ -38,8 +38,8 @@ namespace Asteroids.Core.Actors.Player {
 
 
             // Rotation
-            if (State.Rotate.Value != 0) {
-                Transform.Rotate(0, 0, Config.RotationSpeed * deltaTime * State.Rotate.Value);
+            if (Mathf.Abs(State.Rotate) > 0.01f) {
+                Transform.Rotate(0, 0, Config.RotationSpeed * deltaTime * State.Rotate);
             }
 
             // Calculate speed

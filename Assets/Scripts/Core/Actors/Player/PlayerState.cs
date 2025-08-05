@@ -20,12 +20,12 @@ namespace Asteroids.Core.Actors.Player {
         /// <summary>
         /// Rotate state
         /// <br/>
-        /// <br/> • 0: not rotation
+        /// <br/> • 0: idle
         /// <br/> • 1: left rotation
         /// <br/> • -1: right rotation
         /// </summary>
         [field: SerializeField]
-        public ReactiveProperty<int> Rotate { get; private set; } = new();
+        public float Rotate { get; set; }
 
         // Reference reactive property - to show directly in inspector (without spoiler)
         // [SerializeField]
@@ -57,7 +57,7 @@ namespace Asteroids.Core.Actors.Player {
 
         protected override void OnReset() {
             Move.ResetQuietly();
-            Rotate.ResetQuietly();
+            Rotate = default;
             inertialSpeed = default;
             inertialTime = default;
             lastDirection = default;

@@ -33,8 +33,8 @@ namespace Asteroids.Application.Input {
         }
 
         public void OnRotate(InputAction.CallbackContext input) {
-            bool pressed = input.control.IsPressed();
-            Commands.Get<RotateCommand>().Execute(pressed, -input.ReadValue<float>()); // send inversion value of rotation
+            float rotate = -input.ReadValue<float>(); // get inverse value of rotation
+            Commands.Get<RotateCommand>().Execute(rotate);
         }
 
         public void OnFire1(InputAction.CallbackContext input) {

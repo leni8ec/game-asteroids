@@ -51,24 +51,25 @@ namespace Asteroids.GUI.Screens {
         private readonly ReactiveProperty<Vector3> playerPosition = new();
         private readonly ReactiveProperty<float> playerRotation = new();
         private readonly ReactiveProperty<float> playerSpeed = new();
-        private readonly ReactiveProperty<float> laserRefillCountdown = new();
-        private readonly ReactiveProperty<float> weapon1Countdown = new();
-        private readonly ReactiveProperty<float> weapon2Countdown = new();
 
         public override void Construct() {
             players = GetState<PlayersState>();
             score = GetState<ScoreState>();
             weapon = GetState<WeaponState>();
 
-            Subscribe(score.Points, View.SetScore);
-            Subscribe(weapon.LaserShotsCount, View.SetLaserCount);
-
+            // Bind: variant 1 (own presenter properties)
             Subscribe(playerPosition, View.SetPlayerPosition);
             Subscribe(playerRotation, View.SetPlayerAngle);
             Subscribe(playerSpeed, View.SetPlayerSpeed);
-            Subscribe(laserRefillCountdown, View.SetLaserRefillCountdown);
-            Subscribe(weapon1Countdown, View.SetWeapon1Countdown);
-            Subscribe(weapon2Countdown, View.SetWeapon2Countdown);
+
+            // Bind: variant 2 (model properties)
+            Subscribe(score.Points, View.SetScore);
+            Subscribe(weapon.LaserShotsCount, View.SetLaserCount);
+
+            // Bind: variant 3 (pollable values)
+            Subscribe(() => weapon.LaserRefillCountdown, View.SetLaserRefillCountdown);
+            Subscribe(() => weapon.Fire1Countdown, View.SetWeapon1Countdown);
+            Subscribe(() => weapon.Fire2Countdown, View.SetWeapon2Countdown);
         }
 
         protected override void OnEnableView() { }
@@ -82,9 +83,6 @@ namespace Asteroids.GUI.Screens {
                 playerRotation.Value = player.Rotation;
                 playerSpeed.Value = player.State.speed;
             }
-            laserRefillCountdown.Value = weapon.LaserRefillCountdown;
-            weapon1Countdown.Value = weapon.Fire1Countdown;
-            weapon2Countdown.Value = weapon.Fire2Countdown;
         }
 
     }

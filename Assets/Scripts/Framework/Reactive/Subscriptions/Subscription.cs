@@ -4,7 +4,7 @@ namespace Asteroids.Framework.Reactive.Subscriptions {
     /// <remarks> Subscription not enabled by default </remarks>
     public class Subscription<T> : ISubscription {
 
-        private IReactiveProperty<T> reactiveProperty;
+        protected IReactiveProperty<T> reactiveProperty;
         private Action<T> listener;
 
         public Subscription(IReactiveProperty<T> reactiveProperty, Action<T> listener) {
@@ -12,7 +12,7 @@ namespace Asteroids.Framework.Reactive.Subscriptions {
             this.listener = listener;
         }
 
-        public void Dispose() {
+        public virtual void Dispose() {
             Disable();
             reactiveProperty = null;
             listener = null;

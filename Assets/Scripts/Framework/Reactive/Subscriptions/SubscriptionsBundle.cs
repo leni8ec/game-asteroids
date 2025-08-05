@@ -5,13 +5,18 @@ namespace Asteroids.Framework.Reactive.Subscriptions {
     // todo-naming:
     // - Bundle
     // - Tracker
-    public class SubscriptionBundle : ISubscription {
+    public class SubscriptionsBundle : ISubscription {
 
         private readonly List<ISubscription> subscriptions = new();
 
-        /// Add subscription
+        /// Add new subscription
         public void Add<T>(IReactiveProperty<T> reactiveProperty, Action<T> callback) {
-            subscriptions.Add(new Subscription<T>(reactiveProperty, callback));
+            Add(new Subscription<T>(reactiveProperty, callback));
+        }
+
+        /// Add new subscription
+        public void Add(ISubscription subscription) {
+            subscriptions.Add(subscription);
         }
 
         public void ForceUpdate() {

@@ -44,6 +44,11 @@
 - Event System - _purpose ?_
 - Save game state - repositories usage
 - Unit-tests - simple usages of Unity Test Framework
+
+#### 💥  Unresolved issues
+
+- Reactive properties (of systems states) can be modified from anywhere
+
 ---
 
 ### 🔗 Sources©️

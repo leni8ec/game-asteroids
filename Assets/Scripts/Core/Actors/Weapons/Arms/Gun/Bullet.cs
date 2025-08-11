@@ -5,13 +5,13 @@ namespace Asteroids.Core.Actors.Weapons.Arms.Gun {
     public class Bullet : Ammo<BulletState, BulletConfig>, IBullet {
 
         public void Emit() {
-            State.lifetime = Config.Lifetime;
+            State.Lifetime = Config.Lifetime;
         }
 
         public override void Upd(float deltaTime) {
-            Transform.Translate(State.Direction * (Config.Speed * deltaTime));
+            Transform.Translate(State.direction * (Config.Speed * deltaTime));
 
-            if ((State.lifetime -= deltaTime) <= 0) Kill();
+            if ((State.Lifetime -= deltaTime) <= 0) Kill();
         }
     }
 }

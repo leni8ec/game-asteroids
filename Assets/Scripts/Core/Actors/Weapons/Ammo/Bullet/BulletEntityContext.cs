@@ -1,7 +1,7 @@
-﻿using Asteroids.Core.Actors.Weapons.Arms.Gun;
-using Asteroids.Framework.Entity.Context;
-using Asteroids.Framework.Entity.Services.Factory;
-using Asteroids.Framework.Entity.Services.Spawner;
+﻿using Asteroids.Core.Actors.Common.Context;
+using Asteroids.Core.Actors.Common.Services.Factory;
+using Asteroids.Core.Actors.Common.Services.Spawner;
+using Asteroids.Core.Actors.Weapons.Arms.Gun;
 using UnityEngine;
 
 // ReSharper disable ClassNeverInstantiated.Global

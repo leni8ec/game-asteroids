@@ -1,29 +1,33 @@
-﻿using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Enemies.Ufo {
     public class Ufo : Enemy<UfoState, UfoConfig>, IUfo {
 
+        protected override void OnSpawned() {
+            State.HuntCountdown = Config.HuntDelay;
+            State.Speed = Config.StartSpeed;
 
-        public void StartHunt() {
-            State.Hunting.Enable();
         }
 
         public void SetTarget(EntityBase target) {
-            State.target = target;
-            State.huntCountdown = Config.HuntDelay;
+            State.Target = target;
+        }
+
+        public void StartHunt() {
+            State.hunting.Enable();
+            State.Speed = Config.HuntSpeed;
         }
 
         public override void Upd(float deltaTime) {
-            if ((State.huntCountdown -= Time.deltaTime) > 0) {
-                Transform.Translate(State.Direction * (Config.StartSpeed * deltaTime));
+            if (!State.hunting) {
+                State.HuntCountdown -= Time.deltaTime;
+                if (State.HuntCountdown < 0) StartHunt();
             } else {
-                if (!State.Hunting) {
-                    StartHunt();
-                }
-                Vector3 huntDirection = -(Transform.position - State.target.Position).normalized;
-                Transform.Translate(huntDirection * (Config.HuntSpeed * deltaTime));
+                State.direction = -(Transform.position - State.Target.Position).normalized;
             }
+
+            Transform.Translate(State.direction * (State.Speed * deltaTime));
         }
 
     }

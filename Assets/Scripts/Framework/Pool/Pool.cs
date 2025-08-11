@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Framework.Entity;
 
 namespace Asteroids.Framework.Pool {
-    public class Pool<T> : IPool<T> where T : IEntity {
+    public class Pool<T> : IPool<T> {
 
         public int InitialCapacity { get; }
         public bool IsEmpty => pool.Count == 0;

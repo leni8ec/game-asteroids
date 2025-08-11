@@ -1,4 +1,4 @@
-﻿using Asteroids.Framework.Entity.Context;
+﻿using Asteroids.Core.Actors.Common.Context;
 
 // ReSharper disable ClassNeverInstantiated.Global
 namespace Asteroids.Core.Actors.Enemies.Ufo.Services {

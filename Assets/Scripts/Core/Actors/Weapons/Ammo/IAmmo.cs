@@ -1,4 +1,4 @@
-﻿using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
 
 namespace Asteroids.Core.Actors.Weapons.Ammo {
     // todo-consider: renaming

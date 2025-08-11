@@ -1,10 +1,10 @@
 ﻿using System;
 
 namespace Asteroids.Framework.Reactive {
-    /// Boolean state switcher of the <see cref="ReactiveProperty{T}"/> with enable/disable triggers
-    [Serializable]
-    public class ReactiveFlag : ReactiveProperty<bool> {
-
+    /// <summary>
+    /// Read only reactive flag interface
+    /// </summary>
+    public interface IReactiveFlag : IReactiveProperty<bool> {
         /// On Enable
         /// <br/><br/>
         /// when 'Value' has been changed from 'false' to 'true'
@@ -13,6 +13,14 @@ namespace Asteroids.Framework.Reactive {
         /// On Disable
         /// <br/><br/>
         /// when 'Value' has been changed from 'true' to 'false'
+        public event Action Disabled;
+    }
+
+    /// Boolean state switcher of the <see cref="ReactiveProperty{T}"/> with enable/disable triggers
+    [Serializable]
+    public class ReactiveFlag : ReactiveProperty<bool>, IReactiveFlag {
+
+        public event Action Enabled;
         public event Action Disabled;
 
         public bool Enable() {

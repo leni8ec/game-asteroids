@@ -1,4 +1,4 @@
-﻿using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Player {
@@ -6,33 +6,34 @@ namespace Asteroids.Core.Actors.Player {
 
         public Vector3 WeaponWorldPosition => Transform.position + Transform.up * 0.2f;
 
+        public bool Move { set => State.move.Value = value; }
+        public float Rotate { set => State.Rotate = value; }
 
         public override void Upd(float deltaTime) {
             // Moving
-            if (State.Move) {
-                if (State.inertialTime < 1) {
-                    State.inertialTime = Mathf.Min(1, State.inertialTime + deltaTime * (1 / Config.AccelerationInertia));
-                    State.inertialSpeed = Mathf.Lerp(0, Config.Speed, State.inertialTime);
+            if (State.move) {
+                if (State.InertialTime < 1) {
+                    State.InertialTime = Mathf.Min(1, State.InertialTime + deltaTime * (1 / Config.AccelerationInertia));
+                    State.InertialSpeed = Mathf.Lerp(0, Config.Speed, State.InertialTime);
                 }
             } else {
-                if (State.inertialTime > 0) {
-                    State.inertialTime = Mathf.Max(0, State.inertialTime - deltaTime * (1 / Config.BrakingInertia));
-                    State.inertialSpeed = Mathf.Lerp(0, Config.Speed, State.inertialTime);
+                if (State.InertialTime > 0) {
+                    State.InertialTime = Mathf.Max(0, State.InertialTime - deltaTime * (1 / Config.BrakingInertia));
+                    State.InertialSpeed = Mathf.Lerp(0, Config.Speed, State.InertialTime);
                 }
             }
 
-            if (State.inertialTime > 0) {
+            if (State.InertialTime > 0) {
                 // transform.Translate(transform.up * (config.speed * deltaTime));
-                Vector3 direction;
-                if (State.Move) {
-                    direction = Vector3.Lerp(State.lastDirection, Transform.up, deltaTime / Config.LeftOverInertia); // leftover inertia
+                if (State.move) {
+                    State.direction = Vector3.Lerp(State.LastDirection, Transform.up, deltaTime / Config.LeftOverInertia); // leftover inertia
                 } else {
-                    direction = State.lastDirection; // don't change direction without acceleration
+                    State.direction = State.LastDirection; // don't change direction without acceleration
                 }
-                State.lastDirection = direction * State.inertialTime;
+                State.LastDirection = State.direction * State.InertialTime;
 
                 Vector3 position = Transform.position;
-                position += direction * (State.inertialSpeed * deltaTime);
+                position += State.direction * (State.InertialSpeed * deltaTime);
                 Transform.position = position;
             }
 
@@ -44,9 +45,8 @@ namespace Asteroids.Core.Actors.Player {
 
             // Calculate speed
             Vector3 pos = Transform.position;
-            State.speed = Vector3.Distance(State.lastPos, pos) / deltaTime;
-            State.lastPos = pos;
-
+            State.Speed = Vector3.Distance(State.LastPos, pos) / deltaTime;
+            State.LastPos = pos;
         }
 
     }

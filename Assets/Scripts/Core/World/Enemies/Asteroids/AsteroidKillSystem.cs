@@ -1,9 +1,9 @@
-﻿using Asteroids.Core.Actors.Enemies.Asteroid;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Enemies.Asteroid;
 using Asteroids.Core.Actors.Enemies.Asteroid.Services;
 using Asteroids.Core.World.Common.Values;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Game;
-using Asteroids.Framework.Entity;
 using Asteroids.Framework.Reactive;
 using Asteroids.Framework.Systems;
 using JetBrains.Annotations;

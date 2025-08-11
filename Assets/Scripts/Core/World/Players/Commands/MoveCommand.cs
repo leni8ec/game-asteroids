@@ -5,12 +5,12 @@ using Asteroids.Framework.Command;
 namespace Asteroids.Core.World.Players.Commands {
     public class MoveCommand : CommandBase<PlayersState> {
 
-        private PlayerState PlayerState => State.Active.State;
+        private Player Player => State.Active;
 
         public MoveCommand(PlayersState state) : base(state) { }
 
         public void Execute(bool activeFlag) {
-            PlayerState.Move.Value = activeFlag;
+            Player.Move = activeFlag;
         }
 
     }

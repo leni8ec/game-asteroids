@@ -1,15 +1,14 @@
-﻿using Asteroids.Core.Actors.Enemies.Asteroid;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Services.Spawner.Extra;
+using Asteroids.Core.Actors.Enemies.Asteroid;
 using Asteroids.Core.Actors.Enemies.Asteroid.Services;
 using Asteroids.Core.Actors.Enemies.Ufo;
 using Asteroids.Core.Actors.Enemies.Ufo.Services;
-using Asteroids.Core.Actors.Player;
 using Asteroids.Core.World.Camera;
 using Asteroids.Core.World.Common.Config;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Game;
 using Asteroids.Core.World.Players.Common;
-using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Services.Spawner.Extra;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;
@@ -21,7 +20,7 @@ namespace Asteroids.Core.World.Enemies {
     [UsedImplicitly]
     public class EnemiesSystem : SystemBase, IEnemiesSystem, IUpdateSystem {
         private LevelConfig LevelConfig { get; }
-        public ScreenConfig ScreenConfig { get; }
+        private ScreenConfig ScreenConfig { get; }
         private EnemiesState Enemies { get; }
         private EntitiesState Entities { get; }
         private PlayersState Players { get; }

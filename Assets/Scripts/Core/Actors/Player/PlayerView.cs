@@ -1,8 +1,8 @@
-﻿using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Player {
-    public class PlayerView : EntityView<PlayerState, PlayerConfig> {
+    public class PlayerView : EntityView<IPlayerState, PlayerConfig> {
         [Space]
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private Sprite idleSprite;

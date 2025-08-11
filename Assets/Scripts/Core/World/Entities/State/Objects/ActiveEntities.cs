@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Services.Spawner.Extra;
+using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Services.Spawner.Extra;
 
 namespace Asteroids.Core.World.Entities.State.Objects {
     public class ActiveEntities /*: IEnumerable<EntityBase>*/ {

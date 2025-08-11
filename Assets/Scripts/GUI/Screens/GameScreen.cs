@@ -81,7 +81,7 @@ namespace Asteroids.GUI.Screens {
             if (player != null) {
                 playerPosition.Value = player.Position;
                 playerRotation.Value = player.Rotation;
-                playerSpeed.Value = player.State.speed;
+                playerSpeed.Value = player.State.Speed;
             }
         }
 

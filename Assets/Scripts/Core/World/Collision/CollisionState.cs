@@ -1,5 +1,5 @@
-﻿using Asteroids.Core.Actors.Player;
-using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Player;
 using Asteroids.Framework.State;
 
 namespace Asteroids.Core.World.Collision {

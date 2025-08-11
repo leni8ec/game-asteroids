@@ -1,18 +1,21 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Containers;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Weapons.Ammo.LaserRay {
-    public class LaserRayState : EntityState, IDirectionContainer {
 
-        public float duration;
-        [field: SerializeField]
-        public Vector3 Direction { get; set; }
+    public interface ILaserRayState : IEntityViewState {
+        float Duration { get; }
+    }
+
+
+    public class LaserRayState : EntityState, ILaserRayState {
+
+        [field: SerializeField] public float Duration { get; internal set; }
 
         protected override void OnReset() {
-            duration = default;
-            Direction = default;
+            Duration = default;
         }
 
     }
+
 }

@@ -1,4 +1,4 @@
-﻿using Asteroids.Framework.Entity.Services.Spawner;
+﻿using Asteroids.Core.Actors.Common.Services.Spawner;
 using JetBrains.Annotations;
 
 namespace Asteroids.Core.Actors.Player.Services {

@@ -7,12 +7,12 @@ namespace Asteroids.Core.Actors.Weapons.Arms.Laser {
         public float MaxDistance => Config.MaxDistance;
 
         public void Emit() {
-            State.duration = Config.Duration;
-            Transform.up = State.Direction;
+            State.Duration = Config.Duration;
+            Transform.up = State.direction;
         }
 
         public override void Upd(float deltaTime) {
-            if ((State.duration -= deltaTime) < 0) {
+            if ((State.Duration -= deltaTime) < 0) {
                 Kill();
             }
         }

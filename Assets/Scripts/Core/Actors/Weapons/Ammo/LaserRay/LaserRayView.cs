@@ -1,5 +1,5 @@
-﻿using Asteroids.Core.Actors.Weapons.Arms.Laser;
-using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Weapons.Arms.Laser;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Weapons.Ammo.LaserRay {
@@ -8,7 +8,7 @@ namespace Asteroids.Core.Actors.Weapons.Ammo.LaserRay {
         [SerializeField] private SpriteRenderer laserSprite;
 
         protected override void SubscribeEvents() {
-            State.Active.Enabled += FireHandle;
+            State.active.Enabled += FireHandle;
         }
 
         private void FireHandle() {
@@ -20,7 +20,7 @@ namespace Asteroids.Core.Actors.Weapons.Ammo.LaserRay {
 
         private void Update() {
             Color color = laserSprite.color;
-            color.a = Mathf.Max(0, State.duration / Config.Duration);
+            color.a = Mathf.Max(0, State.Duration / Config.Duration);
             laserSprite.color = color;
         }
 

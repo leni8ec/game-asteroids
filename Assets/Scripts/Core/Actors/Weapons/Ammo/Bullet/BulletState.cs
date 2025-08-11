@@ -1,18 +1,21 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Containers;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Weapons.Ammo.Bullet {
-    public class BulletState : EntityState, IDirectionContainer {
 
-        public float lifetime;
-        [field: SerializeField]
-        public Vector3 Direction { get; set; }
+    public interface IBulletState : IEntityViewState {
+        float Lifetime { get; }
+    }
+
+
+    public class BulletState : EntityState, IBulletState {
+
+        [field: SerializeField] public float Lifetime { get; internal set; }
 
         protected override void OnReset() {
-            lifetime = default;
-            Direction = default;
+            Lifetime = default;
         }
 
     }
+
 }

@@ -1,7 +1,7 @@
-﻿using Asteroids.Core.Actors.Player;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Player;
 using Asteroids.Core.World.Common.Values;
 using Asteroids.Core.World.Entities.State;
-using Asteroids.Framework.Entity;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;

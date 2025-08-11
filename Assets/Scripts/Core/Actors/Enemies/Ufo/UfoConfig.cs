@@ -1,5 +1,5 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Containers;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Containers;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Enemies.Ufo {

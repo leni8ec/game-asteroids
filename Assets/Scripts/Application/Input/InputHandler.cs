@@ -1,6 +1,5 @@
 using Asteroids.Core.World.Game.Commands;
 using Asteroids.Core.World.Players.Commands;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Asteroids.Application.Input {

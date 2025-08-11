@@ -10,7 +10,7 @@ namespace Asteroids.Core.Actors.Enemies.Asteroid {
         public AsteroidSize Size => Config.Size;
 
         public override void Upd(float deltaTime) {
-            Transform.Translate(State.Direction * (Config.Speed * deltaTime));
+            Transform.Translate(State.direction * (Config.Speed * deltaTime));
         }
 
         protected override void OnKill() {

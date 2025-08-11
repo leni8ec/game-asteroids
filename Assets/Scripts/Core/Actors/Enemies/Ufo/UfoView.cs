@@ -1,8 +1,8 @@
-﻿using Asteroids.Framework.Entity;
+﻿using Asteroids.Core.Actors.Common;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Enemies.Ufo {
-    public class UfoView : EntityView<UfoState, UfoConfig> {
+    public class UfoView : EntityView<IUfoState, UfoConfig> {
         [SerializeField] private AudioSource normalAudio;
         [SerializeField] private AudioSource huntAudio;
 

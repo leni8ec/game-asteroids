@@ -1,16 +1,14 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Containers;
-using UnityEngine;
+﻿using Asteroids.Core.Actors.Common;
 
 namespace Asteroids.Core.Actors.Enemies.Asteroid {
-    public class AsteroidState : EntityState, IDirectionContainer {
 
-        [field: SerializeField]
-        public Vector3 Direction { get; set; }
+    public interface IAsteroidState : IEntityViewState { }
 
-        protected override void OnReset() {
-            Direction = default;
-        }
+
+    public class AsteroidState : EntityState, IAsteroidState {
+
+        protected override void OnReset() { }
 
     }
+
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Asteroids.Core.Actors.Common;
 using Asteroids.Core.Actors.Enemies.Asteroid;
 using Asteroids.Core.Actors.Enemies.Ufo;
 using Asteroids.Core.Actors.Player;
@@ -7,7 +8,6 @@ using Asteroids.Core.Actors.Weapons.Arms.Laser;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Entities.State.Objects;
 using Asteroids.Core.World.Game;
-using Asteroids.Framework.Entity;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;

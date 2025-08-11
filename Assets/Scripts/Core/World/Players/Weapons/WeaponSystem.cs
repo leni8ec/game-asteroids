@@ -5,7 +5,6 @@ using Asteroids.Core.Actors.Weapons.Arms.Gun;
 using Asteroids.Core.Actors.Weapons.Arms.Laser;
 using Asteroids.Core.World.Game;
 using Asteroids.Core.World.Players.Common;
-using Asteroids.Framework.Reactive;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;

@@ -1,4 +1,5 @@
-﻿using Asteroids.Framework.State;
+﻿using Asteroids.Core.Actors.Player;
+using Asteroids.Framework.State;
 using JetBrains.Annotations;
 
 namespace Asteroids.Core.World.Players.Common {
@@ -8,10 +9,8 @@ namespace Asteroids.Core.World.Players.Common {
     [UsedImplicitly]
     public class PlayersState : IState {
 
-        // todo-consider: need to investigate it (maybe find a more reliable solution)
-        // - use 'Lazy<>' in Systems ?
         ///  Active Player
-        public Actors.Player.Player Active { get; internal set; }
+        public Player Active { get; internal set; }
 
         public void Reset() {
             Active = null;

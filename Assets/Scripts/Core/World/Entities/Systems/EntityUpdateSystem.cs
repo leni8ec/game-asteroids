@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
+using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Services.Spawner.Extra;
 using Asteroids.Core.World.Entities.State;
 using Asteroids.Core.World.Entities.State.Objects;
 using Asteroids.Core.World.Game;
-using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Services.Spawner.Extra;
 using Asteroids.Framework.Systems;
 using Asteroids.Framework.Systems.Behaviour;
 using JetBrains.Annotations;

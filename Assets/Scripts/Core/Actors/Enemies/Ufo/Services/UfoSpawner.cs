@@ -1,5 +1,5 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Services.Spawner;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Services.Spawner;
 using JetBrains.Annotations;
 using UnityEngine;
 

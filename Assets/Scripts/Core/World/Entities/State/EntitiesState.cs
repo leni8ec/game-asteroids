@@ -1,6 +1,5 @@
-﻿using Asteroids.Core.Actors.Player;
+﻿using Asteroids.Core.Actors.Common;
 using Asteroids.Core.World.Entities.State.Objects;
-using Asteroids.Framework.Entity;
 using Asteroids.Framework.State;
 
 namespace Asteroids.Core.World.Entities.State {

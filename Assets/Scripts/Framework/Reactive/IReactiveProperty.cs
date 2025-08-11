@@ -1,5 +1,4 @@
 ﻿using System;
-using Asteroids.Framework.Behavior;
 
 namespace Asteroids.Framework.Reactive {
     /// <summary>

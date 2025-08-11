@@ -1,5 +1,5 @@
-﻿using Asteroids.Framework.Entity;
-using Asteroids.Framework.Entity.Containers;
+﻿using Asteroids.Core.Actors.Common;
+using Asteroids.Core.Actors.Common.Containers;
 using UnityEngine;
 
 namespace Asteroids.Core.Actors.Weapons.Ammo {
@@ -7,11 +7,9 @@ namespace Asteroids.Core.Actors.Weapons.Ammo {
         where TState : EntityState, IDirectionContainer, new()
         where TConfig : EntityConfig, IColliderRadiusContainer, new() {
 
-        public Vector3 Direction => State.Direction;
-
         public virtual void Set(Vector3 startPoint, Vector3 direction) {
             Transform.position = startPoint;
-            State.Direction = direction;
+            State.direction = direction;
         }
 
     }

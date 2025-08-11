@@ -1,4 +1,4 @@
-﻿using Asteroids.Framework.Entity.Services.Factory;
+﻿using Asteroids.Core.Actors.Common.Services.Factory;
 using JetBrains.Annotations;
 
 namespace Asteroids.Core.Actors.Enemies.Ufo.Services {

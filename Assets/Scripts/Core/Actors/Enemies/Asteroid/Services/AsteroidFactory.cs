@@ -1,5 +1,5 @@
-﻿using Asteroids.Framework.DI.Content.Bunch;
-using Asteroids.Framework.Entity.Services.Factory;
+﻿using Asteroids.Core.Actors.Common.Services.Factory;
+using Asteroids.Framework.DI.Content.Bunch;
 using JetBrains.Annotations;
 
 namespace Asteroids.Core.Actors.Enemies.Asteroid.Services {

@@ -23,13 +23,13 @@ namespace Asteroids.GUI.Screens {
         public TextMeshProUGUI weapon2Countdown;
 
 
-        public void SetScore(int value) => points.SetText($"Score: {value}");
+        public void SetScore(int value) => points.text = $"Score: {value}";
 
-        public void SetPlayerPosition(Vector3 value) => coords.SetText($"Coords: [ {value.x:F1} : {value.y:F1} ]");
+        public void SetPlayerPosition(Vector3 value) => coords.text = $"Coords: [ {value.x:F1} : {value.y:F1} ]";
 
-        public void SetPlayerAngle(float value) => angle.SetText($"Angle: {value:F0}");
+        public void SetPlayerAngle(float value) => angle.text = $"Angle: {value:F0}";
 
-        public void SetPlayerSpeed(float value) => speed.SetText($"Speed: {value:N}");
+        public void SetPlayerSpeed(float value) => speed.text = $"Speed: {value:N}";
 
         public void SetLaserCount(int value) => laserCount.text = $"Laser Count: {value}";
 

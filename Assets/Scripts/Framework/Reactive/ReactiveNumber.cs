@@ -44,6 +44,20 @@ namespace Asteroids.Framework.Reactive {
     /// </summary>
     [Serializable]
     public class ReactiveFloat : ReactiveProperty<float> {
+        private readonly float tolerance;
+
+
+        public ReactiveFloat(float value = 0, float tolerance = 0) : base(value) {
+            this.tolerance = tolerance;
+        }
+
+        // optimize float calculation with tolerance (throttling)
+        // todo-tests
+        public override bool Set(float value) {
+            if (tolerance > 0 && MathF.Abs(value - Value) < tolerance)
+                return false;
+            return base.Set(value);
+        }
 
         public static ReactiveFloat operator ++(ReactiveFloat self) {
             self.Value++;

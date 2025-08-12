@@ -21,6 +21,8 @@ namespace Asteroids.Framework.Reactive {
         }
 
         public override bool Set(T value) {
+            // todo-later: use predicate to be able to override comparers
+            // (ex: throttling changes of the float or Vector3, see 'ReactiveFloat.Set()')
             if (Equals(this.value, value)) return false;
             this.value = value;
             Changed?.Invoke(this.value);
